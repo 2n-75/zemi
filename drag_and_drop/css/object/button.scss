@@ -1,0 +1,23 @@
+.btn-circle{
+	$button_size: 50px;
+	$button_color: #f39961;
+	@media screen and(max-width: 756px){
+		$button_size: 30px;
+	}
+	
+	display: inline-block;
+	text-decoration: none;
+	background: $button_color;
+	color: #FFF;
+	width: $button_size;
+	height: $button_size;
+	line-height: $button_size;
+	border-radius: 50%;
+	text-align: center;
+	overflow: hidden;
+	transition: .4s;
+
+	:hover {
+		background: #668ad8;
+	}
+}

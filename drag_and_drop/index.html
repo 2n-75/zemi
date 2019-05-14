@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+
+		<!--script-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="./js/library/Sortable/Sortable.min.js"></script>
+
+		<!--stylesheet-->
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+		<link rel="stylesheet" href="./css/stylesheets.css">
+
+	</head>
+
+	<body>
+		<div class="container">
+			<header>
+				<div class="content-inner">
+					<a href="" class="btn-circle">
+						<span><i class="fas fa-arrow-left"></i></span>
+						<!--トップページを作る-->
+					</a>
+
+					<div class="btn-circle f-right">
+						<span><i class="fas fa-question"></i></span>
+						<!--クリックしたらモーダルでヘルプを出す-->
+					</div>
+				</div>
+			</header>
+			<div class="main">
+				<div class="content-inner">
+					<!--出題エリア-->
+					<section>
+						<h3>問題文</h3>
+						<div class="list-area">
+							<ul id="answer_list" class="list">
+								<!--
+								<li class="list-item empty-item">huga1</li>
+								-->
+
+
+							</ul>
+						</div>
+					</section>
+
+					<!--回答エリア-->
+					<section>
+						<div class="list-area">
+							<ul id="choices_list" class="list">
+								<li class="list-item">item 1</li>
+								<li class="list-item">item 2</li>
+								<li class="list-item">item 3</li>
+							</ul>
+						</div>
+					</section>
+
+				</div>
+			</div>
+			<footer>
+				<div class="content-inner">
+					footer
+				</div>
+			</footer>
+		</div>
+
+		<script>
+			let answer_list_data=[];
+			// 回答を置くところ
+			new Sortable(answer_list, {
+				group:{
+					name: 'shared',
+					pull: 'clone', // To clone: set pull to 'clone'
+				},
+				animation: 150,
+				sort: true,
+				handle: ".list-item",
+				filter: ".empty-item",		
+				onAdd: function (evt) {
+					console.log("add");
+					console.log(evt.item);
+					console.log(evt.item.innerHTML);
+					//var el = choices_list.closest(evt.item);
+					//el.innerHTML += '<i class="js-remove">✖</i>';
+
+					let element = document.getElementsByClassName("choices_list");
+					console.log(element);
+
+					// リストを入れ替える
+				},
+				// リストの中身を保存する
+				store: {
+					get: function (sortable) {
+						let order = localStorage.getItem(sortable.options.group.name);
+						return order ? order.split('|') : [];
+					},
+					set: function (sortable) {
+						let order = sortable.toArray();
+						console.log("order:"+order);
+						localStorage.setItem(sortable.options.group.name, order.join('|'));
+					}		
+				}
+			});
+
+			//選択肢のあるところ
+			new Sortable(choices_list, {
+				group:{
+					name: 'shared',
+					pull: 'clone'
+				},
+				animation: 150,
+				sort: false,
+				handle: ".list-item",
+			});
+
+			
+		</script>
+	</body>
+
+</html>

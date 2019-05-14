@@ -1,0 +1,26 @@
+.container {
+	max-width: 900px;
+	margin: 10px auto;
+}
+
+.main {
+	.content-inner {
+		width: 98%;
+		margin: 10px auto;
+		padding: 10px;
+	}
+	h3{
+		color: #555;
+		font-size: 1.2em;
+		padding: 1em 0.5em;
+	}
+}
+
+
+header {
+	.content-inner {
+		width: 100%;
+		padding: 10px 20px;
+		border-bottom: 2px solid #ddd;
+	}	
+}

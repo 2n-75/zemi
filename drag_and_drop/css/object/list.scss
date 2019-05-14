@@ -1,0 +1,19 @@
+/* drag and drop list */
+.list-area {
+	.list {
+		margin: 10px;
+		display: flex;
+		border: 1px solid #ddd;
+		min-height: 50px;
+		li {
+			margin: 5px;
+			padding: 10px;
+			border: 1px solid #ddd;
+			
+		}
+
+		li:hover {
+			cursor: move;
+		}
+	}
+}
