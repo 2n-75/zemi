@@ -6,6 +6,12 @@
 	width        : 280px;
 	height       : 64px;
 	border       : solid 1px #808080;
+	position: relative;
+
+	.box{
+		position: absolute;
+		top: 25%;
+	}
 }
 .list-area {
 	display: flex;
@@ -18,10 +24,10 @@
 		}
 	}
 	#item1 {
-		border: solid 1px red;
+		border: solid 1px #f39961;
 	}
 
 	#item2 {
-		border: 1px solid blue;
+		border: 1px solid #88CCC4;
 	}
 }
