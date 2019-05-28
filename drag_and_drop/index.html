@@ -10,11 +10,19 @@
 		<!--script-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="./js/library/Sortable/Sortable.min.js"></script>
-
+		<script src="./js/sound.js"></script>
 		<!--stylesheet-->
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-		<link rel="styl styesheet" href="./css/stylesheets.css">
+		<!--
+			<link rel="styl styesheet" href="./css/stylesheets.css">
+		-->
+		<link rel="stylesheet" href="./css/foundation/reset.css">
+		<link rel="stylesheet" href="./css/layout/layout.css">
+		<link rel="stylesheet" href="./css/object/list.css">
+		<link rel="stylesheet" href="./css/object/button.css">
+		<link rel="stylesheet" href="./css/object/utility.css">
+
 	</head>
 
 	<body>
@@ -43,10 +51,23 @@
 
 					<!--回答エリア-->
 					<section>
-						<div class="list-area">
-							<div class="box" id="item1" draggable="true"></div>
-							<div class="box" id="item2" draggable="true"></div>
+						<div class="flex-area relative">
+							<div class="list-area flex-area mg-10">
+								<div class="box" id="note2" draggable="true"></div>
+								<div class="box" id="note4" draggable="true"></div>
+								<div class="box" id="note8" draggable="true"></div>
+							</div>
+							<div class="mg-10 btn-sound-frame">
+								<div class="btn-circle btn-sound" onclick="playSound()">
+									<span><i class="fas fa-music"></i></span>
+								</div>
+							</div>
 						</div>
+
+					</section>
+					<section class="mess-area flex-area">
+						<p class="mess"></p>
+						<a href="" onclick="window.location.reload()">やりなおす</a>
 					</section>
 				</div>
 			</div>
@@ -74,15 +95,29 @@
 		}
 		function onDragOver(e) {
 			e.preventDefault();
-			this.textContent = 'onDragOver';
+			//this.textContent = 'onDragOver';
 		}
 		function onDrop(e) {
 			e.preventDefault();
-			this.textContent = 'onDrop';
+			//this.textContent = 'onDrop';
 		}
 		function onDragend(e) {
 			e.preventDefault();
 			zone.appendChild(e.target);
+			//let idName=e.getElementById();
+			checkAnswer(e.currentTarget.id);
+		}
+
+		// 正誤判定
+		const answer = "note4";
+		function checkAnswer(idName) {
+			let textContent = "";
+			let mess = document.getElementsByClassName("mess"); //messが配列の形でとれるんだけどなんで？classだとそうなる？
+			if (idName === answer) {
+				mess[0].innerHTML = "せいかい！";
+			} else {
+				mess[0].innerHTML = "ざんねん！";
+			}
 		}
 	</script>
 

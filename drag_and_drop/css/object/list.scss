@@ -1,33 +1,52 @@
 /* drag and drop list */
 
 .dropzone {
-	margin-top   : 16px;
-	margin-bottom: 16px;
-	width        : 280px;
-	height       : 64px;
-	border       : solid 1px #808080;
-	position: relative;
-
-	.box{
-		position: absolute;
-		top: 25%;
-	}
+  margin-top: 16px;
+  margin-bottom: 16px;
+  width: 280px;
+  height: 64px;
+  border: solid 1px #808080;
+  position: relative;
+  background-image: url(../../img/background2.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 200px;
+  .box {
+    position: absolute;
+    top: 25%;
+    left: 55%;
+  }
 }
 .list-area {
-	display: flex;
-	.box {
-		width : 32px;
-		height: 32px;
-		border: solid 1px #002f9f;
-		&:hover{
-			cursor: pointer;
-		}
-	}
-	#item1 {
-		border: solid 1px #f39961;
-	}
+  .box {
+    margin: 10px;
+    width: 32px;
+    height: 32px;
+    border: solid 1px #88ccc4;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 45px;
+    height: 80px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
-	#item2 {
-		border: 1px solid #88CCC4;
-	}
+  #note1 {
+    background-image: url(../../img/note2.png);
+  }
+
+  #note2 {
+    background-image: url(../../img/note2.png);
+  }
+
+  #note4 {
+    background-image: url(../../img/note4.png);
+  }
+
+  #note8 {
+    background-image: url(../../img/note8.png);
+    background-size: cover;
+  }
 }
