@@ -22,6 +22,7 @@
 		<link rel="stylesheet" href="./css/object/list.css">
 		<link rel="stylesheet" href="./css/object/button.css">
 		<link rel="stylesheet" href="./css/object/utility.css">
+		<link rel="stylesheet" href="./css/object/animation.css">
 
 	</head>
 
@@ -44,8 +45,11 @@
 				<div class="content-inner">
 					<!--出題エリア-->
 					<section>
-						<h3>問題文</h3>
+						<h3>？にあてはまるおんぷはどれかな</h3>
 						<div id="dropzone" class="dropzone list-area">
+							<div class="relative">
+								<p id="timing-bar" class="timing-bar absolute">|</p>
+							</div>
 						</div>
 					</section>
 
@@ -58,7 +62,7 @@
 								<div class="box" id="note8" draggable="true"></div>
 							</div>
 							<div class="mg-10 btn-sound-frame">
-								<div class="btn-circle btn-sound" onclick="playSound()">
+								<div class="btn-circle btn-sound" onclick="playSound('./sound/q2.wav'), barActive()">
 									<span><i class="fas fa-music"></i></span>
 								</div>
 							</div>
@@ -67,7 +71,7 @@
 					</section>
 					<section class="mess-area flex-area">
 						<p class="mess"></p>
-						<a href="" onclick="window.location.reload()">やりなおす</a>
+						<a href="" onclick="window.location.reload()">もういちど</a>
 					</section>
 				</div>
 			</div>
@@ -79,6 +83,7 @@
 		</div>
 	</body>
 	<script>
+		let count = 0;
 		// ドラッグされるエリア
 		const zone = document.querySelector('.dropzone');
 		zone.addEventListener('dragover', onDragOver, false);
@@ -119,6 +124,33 @@
 				mess[0].innerHTML = "ざんねん！";
 			}
 		}
+
+		// バーのアニメーション
+		function barActive() {
+			console.log("btnclick");
+			const bar = document.getElementById("timing-bar");
+			bar.classList.toggle("bar-active");
+
+			Promise.resolve()
+				.then(wait(5.5)) // ここで10秒待つ（「Promiseオブジェクトを返す関数」を thenに渡しています）
+				.then(function () {
+					const bar = document.getElementById("timing-bar");
+					bar.classList.toggle("bar-active");
+				})
+				.catch(function (err) {
+					console.error(err);
+					self.result_message = error;
+				});
+		}
+
+		var wait = function (sec) {
+			return function () {
+				return new Promise(function (resolve/*, reject*/) {
+					setTimeout(resolve, sec * 1000)
+				});
+			}
+		};
+
 	</script>
 
 </html>

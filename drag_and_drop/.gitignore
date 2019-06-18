@@ -4,7 +4,6 @@
 *.png
 *.wav
 *.mp3
-
 # Ignore node_modules
 node_modules/
 .DS_Store

@@ -1,33 +1,44 @@
 /* drag and drop list */
+/* positionを変更する */
+$beat1: 50%;
+$beat2: 50%;
+$beat3: 50%;
+$beat4: 50%;
 
+$dropzoneHeight: 220px;
+$imgMode: cover;
+@media screen and(max-width: 756px) {
+  $dropzoneHeight: 160px;
+  $imgMode: contain;
+}
 .dropzone {
   margin-top: 16px;
   margin-bottom: 16px;
-  width: 280px;
-  height: 64px;
   border: solid 1px #808080;
   position: relative;
   background-image: url(../../img/background2.png);
-  background-size: contain;
+  background-size: $imgMode;
   background-repeat: no-repeat;
   width: 100%;
-  height: 200px;
+  height: $dropzoneHeight;
   .box {
     position: absolute;
-    top: 25%;
-    left: 55%;
+    top: 23%;
+    left: 50%;
+  }
+  .timing-bar {
+    background-color: #88ccc4;
+    height: $dropzoneHeight;
   }
 }
 .list-area {
   .box {
     margin: 10px;
-    width: 32px;
-    height: 32px;
-    border: solid 1px #88ccc4;
+    border: dashed 1px #88ccc4;
     background-size: contain;
     background-repeat: no-repeat;
-    width: 45px;
-    height: 80px;
+    width: 60px;
+    height: 100px;
     &:hover {
       cursor: pointer;
     }
@@ -47,6 +58,5 @@
 
   #note8 {
     background-image: url(../../img/note8.png);
-    background-size: cover;
   }
 }

@@ -1,0 +1,33 @@
+/* バーのアニメーション */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.abc {
+  animation-name: fadeIn;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+}
+
+@keyframes moveLine {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 99%;
+  }
+}
+.timing-bar {
+  animation-name: moveLine;
+  animation-duration: 5.5s; /* 何秒かけてアニメーションするか ここの値をbpmから出すようにしたい*/
+  animation-play-state: paused;
+  animation-iteration-count: infinite;
+}
+.bar-active {
+  animation-play-state: running;
+}
