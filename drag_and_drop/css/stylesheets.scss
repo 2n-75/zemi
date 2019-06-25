@@ -1,10 +1,10 @@
 /* stylesheetを読み込む */
 /* 基本 */
-@import "./foundation/reset.scss";
-@import "./layout/layout.scss";
+@import "foundation/reset";
+@import "layout/layout";
 
 /* パーツ */
-@import "./object/utility.scss";
-@import "./object/button.scss";
-@import "./object/list.scss";
-@import "./object/animation.scss";
+@import "object/utility";
+@import "object/button";
+@import "object/list";
+@import "object/animation";

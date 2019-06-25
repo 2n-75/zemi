@@ -10,6 +10,7 @@
 		<!--script-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="./js/library/Sortable/Sortable.min.js"></script>
+		<script src="./js/animation.js"></script>
 		<script src="./js/sound.js"></script>
 		<!--stylesheet-->
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
@@ -19,9 +20,9 @@
 		-->
 		<link rel="stylesheet" href="./css/foundation/reset.css">
 		<link rel="stylesheet" href="./css/layout/layout.css">
+		<link rel="stylesheet" href="./css/object/utility.css">
 		<link rel="stylesheet" href="./css/object/list.css">
 		<link rel="stylesheet" href="./css/object/button.css">
-		<link rel="stylesheet" href="./css/object/utility.css">
 		<link rel="stylesheet" href="./css/object/animation.css">
 
 	</head>
@@ -29,26 +30,31 @@
 	<body>
 		<div class="container">
 			<header>
-				<div class="content-inner">
+				<div class="content_inner">
 					<a href="" class="btn-circle">
 						<span><i class="fas fa-arrow-left"></i></span>
 						<!--トップページを作る-->
 					</a>
-
-					<div class="btn-circle f-right">
-						<span><i class="fas fa-question"></i></span>
+					<div class="btn-circle f-right" onclick="showHint()">
+						<span><i class="fas fa-exclamation"></i></span>
 						<!--クリックしたらモーダルでヘルプを出す-->
 					</div>
 				</div>
 			</header>
-			<div class="main">
-				<div class="content-inner">
+			<main>
+
+				<div class="content_inner">
 					<!--出題エリア-->
 					<section>
-						<h3>？にあてはまるおんぷはどれかな</h3>
-						<div id="dropzone" class="dropzone list-area">
-							<div class="relative">
+						<h3 class="mg-10">？にあてはまるおんぷはどれかな</h3>
+						<div id="dropzone" class="dropzone">
+							<div class="relative flex-area">
 								<p id="timing-bar" class="timing-bar absolute">|</p>
+								<div class="box-1 hint hidden"></div>
+								<div class="box-2 hint hidden"></div>
+								<div id="blackbox" class="box-3 blackbox"></div>
+								<div class="box-3 hint hidden"></div>
+								<div class="box-4 hint hidden"></div>
 							</div>
 						</div>
 					</section>
@@ -57,100 +63,35 @@
 					<section>
 						<div class="flex-area relative">
 							<div class="list-area flex-area mg-10">
-								<div class="box" id="note2" draggable="true"></div>
-								<div class="box" id="note4" draggable="true"></div>
-								<div class="box" id="note8" draggable="true"></div>
+								<div class="draggable box" id="note2" draggable="true"></div>
+								<div class="draggable box" id="note4" draggable="true"></div>
+								<div class="draggable box" id="note8" draggable="true"></div>
 							</div>
 							<div class="mg-10 btn-sound-frame">
-								<div class="btn-circle btn-sound" onclick="playSound('./sound/q2.wav'), barActive()">
+								<div class="btn-circle btn-sound" onclick="playSound(2)" , barActive()">
 									<span><i class="fas fa-music"></i></span>
 								</div>
 							</div>
 						</div>
-
 					</section>
+
+					<!--操作パネル-->
 					<section class="mess-area flex-area">
 						<p class="mess"></p>
 						<a href="" onclick="window.location.reload()">もういちど</a>
 					</section>
 				</div>
-			</div>
+
+			</main>
 			<footer>
-				<div class="content-inner">
+				<div class="content_inner">
 					footer
 				</div>
 			</footer>
-		</div>
+
+
+			<!--scripts-->
+			<script src="./js/index.js"></script>
 	</body>
-	<script>
-		let count = 0;
-		// ドラッグされるエリア
-		const zone = document.querySelector('.dropzone');
-		zone.addEventListener('dragover', onDragOver, false);
-		zone.addEventListener('drop', onDrop, false);
-
-		//ドラッグされるもの
-		const boxs = document.getElementsByClassName("box");	// HTMLCollection
-		for (let index = 0; index < boxs.length; index++) {
-			boxs[index].addEventListener('dragend', onDragend, false);
-			boxs[index].addEventListener('dragstart', onDragStart, false);
-		}
-		function onDragStart(e) {
-			e.dataTransfer.setData('text', this.id);
-		}
-		function onDragOver(e) {
-			e.preventDefault();
-			//this.textContent = 'onDragOver';
-		}
-		function onDrop(e) {
-			e.preventDefault();
-			//this.textContent = 'onDrop';
-		}
-		function onDragend(e) {
-			e.preventDefault();
-			zone.appendChild(e.target);
-			//let idName=e.getElementById();
-			checkAnswer(e.currentTarget.id);
-		}
-
-		// 正誤判定
-		const answer = "note4";
-		function checkAnswer(idName) {
-			let textContent = "";
-			let mess = document.getElementsByClassName("mess"); //messが配列の形でとれるんだけどなんで？classだとそうなる？
-			if (idName === answer) {
-				mess[0].innerHTML = "せいかい！";
-			} else {
-				mess[0].innerHTML = "ざんねん！";
-			}
-		}
-
-		// バーのアニメーション
-		function barActive() {
-			console.log("btnclick");
-			const bar = document.getElementById("timing-bar");
-			bar.classList.toggle("bar-active");
-
-			Promise.resolve()
-				.then(wait(5.5)) // ここで10秒待つ（「Promiseオブジェクトを返す関数」を thenに渡しています）
-				.then(function () {
-					const bar = document.getElementById("timing-bar");
-					bar.classList.toggle("bar-active");
-				})
-				.catch(function (err) {
-					console.error(err);
-					self.result_message = error;
-				});
-		}
-
-		var wait = function (sec) {
-			return function () {
-				return new Promise(function (resolve/*, reject*/) {
-					setTimeout(resolve, sec * 1000)
-				});
-			}
-		};
-
-	</script>
 
 </html>
