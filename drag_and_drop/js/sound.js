@@ -4,7 +4,7 @@ function setFileName(id) {
 }
 function playSound(value) {
 	// 数値を引数とした場合はファイル名を別関数で定義
-	let fileName = isNaN(value) ? setFileName(value) : value;
+	let fileName = isNaN(value) ? value : setFileName(value);
 	let audioElem;
 	audioElem = new Audio();
 	audioElem.src = fileName;

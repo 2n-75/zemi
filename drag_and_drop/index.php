@@ -15,19 +15,16 @@
 		<!--stylesheet-->
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-		<!--
-			<link rel="styl styesheet" href="./css/stylesheets.css">
-		-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css">
+
 		<link rel="stylesheet" href="./css/foundation/reset.css">
 		<link rel="stylesheet" href="./css/layout/layout.css">
-		<link rel="stylesheet" href="./css/object/utility.css">
-		<link rel="stylesheet" href="./css/object/list.css">
-		<link rel="stylesheet" href="./css/object/button.css">
-		<link rel="stylesheet" href="./css/object/animation.css">
+		<link rel="stylesheet" href="./css/object/objects.css">
 
 	</head>
 
 	<body>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>
 		<div class="container">
 			<header>
 				<div class="content_inner">
@@ -42,39 +39,48 @@
 				</div>
 			</header>
 			<main>
-
 				<div class="content_inner">
-					<!--出題エリア-->
-					<section>
-						<h3 class="mg-10">？にあてはまるおんぷはどれかな</h3>
-						<div id="dropzone" class="dropzone">
-							<div class="relative flex-area">
-								<p id="timing-bar" class="timing-bar absolute">|</p>
-								<div class="box-1 hint hidden"></div>
-								<div class="box-2 hint hidden"></div>
-								<div id="blackbox" class="box-3 blackbox"></div>
-								<div class="box-3 hint hidden"></div>
-								<div class="box-4 hint hidden"></div>
+					<h3>？にあてはまるおんぷはどれかな</h3>
+					<div class="swiper-container">
+						<!-- Additional required wrapper -->
+						<div class="swiper-wrapper">
+							<!-- Slides -->
+							<div class="swiper-slide">
+								<?php include "./element/mainContent.php"; ?>
 							</div>
+							<div class="swiper-slide">
+								<?php include "./element/mainContent.php"; ?>
+							</div>
+							<div class="swiper-slide">
+								<?php include "./element/mainContent.php"; ?>
+							</div>
+							...
 						</div>
-					</section>
+						<!-- If we need pagination -->
+						<div class="swiper-pagination"></div>
+
+						<!-- If we need navigation buttons -->
+						<div class="swiper-button-prev"></div>
+						<div class="swiper-button-next"></div>
+					</div>
 
 					<!--回答エリア-->
 					<section>
 						<div class="flex-area relative">
 							<div class="list-area flex-area mg-10">
-								<div class="draggable box" id="note2" draggable="true"></div>
-								<div class="draggable box" id="note4" draggable="true"></div>
-								<div class="draggable box" id="note8" draggable="true"></div>
+								<div class="box box--border box--draggable note--half" id="note-half" draggable="true"></div>
+								<div class="box box--border box--draggable note--quaterDot" id="note-quaterDot" draggable="true"></div>
+								<div class="box box--border box--draggable note--quater" id="note-quater" draggable="true"></div>
+								<div class="box box--border box--draggable note--eighth" id="note-eighth" draggable="true"></div>
+
 							</div>
 							<div class="mg-10 btn-sound-frame">
-								<div class="btn-circle btn-sound" onclick="playSound(2)" , barActive()">
+								<div class="btn-circle btn-sound" onclick="playSound(2) , barActive()">
 									<span><i class="fas fa-music"></i></span>
 								</div>
 							</div>
 						</div>
 					</section>
-
 					<!--操作パネル-->
 					<section class="mess-area flex-area">
 						<p class="mess"></p>
@@ -92,6 +98,23 @@
 
 			<!--scripts-->
 			<script src="./js/index.js"></script>
+			<script>
+			var mySwiper = new Swiper('.swiper-container', {
+				loop: true,
+				slidesPerView: 2,
+				spaceBetween: 10,
+				centeredSlides: true,
+				pagination: '.swiper-pagination',
+				nextButton: '.swiper-button-next',
+				prevButton: '.swiper-button-prev',
+				breakpoints: {
+					767: {
+						slidesPerView: 1,
+						spaceBetween: 0
+					}
+				}
+			})
+			</script>
 	</body>
 
 </html>

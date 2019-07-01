@@ -1,7 +1,4 @@
-/*
-reset/normalize/base...
-*/
-
+@import "color";
 * {
   margin: 0;
   padding: 0;
@@ -61,13 +58,13 @@ a {
   max-height: 99999px;
   backface-visibility: hidden;
   text-decoration: none;
-  color: #88ccc4;
+  color: $mintGreen;
 }
 
 body {
   background-color: #fff;
   margin: 0 auto;
-  color: #88ccc4;
+  color: $mintGreen;
   font-family: "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", "メイリオ",
     Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
   font-size: 16px;

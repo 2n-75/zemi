@@ -1,4 +1,4 @@
-/* バーのアニメーション */
+// バーのアニメーション
 @keyframes moveLine {
   0% {
     left: 0;
@@ -9,7 +9,7 @@
 }
 .timing-bar {
   animation-name: moveLine;
-  animation-duration: 5.1s; /* 何秒かけてアニメーションするか ここの値をbpmから出すようにしたい*/
+  animation-duration: 5.1s; // 何秒かけてアニメーションするか ここの値をbpmから出すようにしたい
   animation-play-state: paused;
   animation-delay: 0.4s;
   animation-iteration-count: infinite;

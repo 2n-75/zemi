@@ -1,18 +1,27 @@
+@import "../object/mediaquery";
+
 .container {
   max-width: 900px;
   margin: 10px auto;
 }
 
-.main {
+main {
   .content_inner {
-    width: 98%;
+    width: 80%;
     margin: 10px auto;
     padding: 10px;
+    @include mq-down(md) {
+      width: 90%;
+    }
   }
   h3 {
     color: #555;
     font-size: 1.2em;
     padding: 1em 0.5em;
+    @include mq-down(md) {
+      padding: 0.5em 0;
+      font-size: 1em;
+    }
   }
 }
 
