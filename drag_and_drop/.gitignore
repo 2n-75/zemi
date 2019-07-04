@@ -4,6 +4,8 @@
 *.png
 *.wav
 *.mp3
+*.json
 # Ignore node_modules
 node_modules/
+.vscode/
 .DS_Store
