@@ -1,0 +1,36 @@
+@import "mediaquery";
+
+@mixin buttonSize() {
+  $button_size: 50px;
+  @include mq-down(md) {
+    $button_size: 40px;
+    i {
+      font-size: 0.8em;
+    }
+  }
+  width: $button_size;
+  height: $button_size;
+  line-height: $button_size;
+}
+.btn-circle {
+  @include buttonSize();
+  $button_color: #f39961;
+
+  display: inline-block;
+  text-decoration: none;
+  background: $button_color;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  transition: 0.4s;
+
+  :hover {
+    background: #668ad8;
+  }
+}
+.btn-sound-frame {
+  position: absolute;
+  top: 25%;
+  right: 0%;
+}
