@@ -9,14 +9,17 @@
 
 		<!--script-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="./js/library/Sortable/Sortable.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+		<script src="//cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js"></script>
+
 		<script src="./js/animation.js"></script>
 		<script src="./js/sound.js"></script>
+
 		<!--stylesheet-->
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css">
-
 		<link rel="stylesheet" href="./css/foundation/reset.css">
 		<link rel="stylesheet" href="./css/layout/layout.css">
 		<link rel="stylesheet" href="./css/object/objects.css">
@@ -41,46 +44,8 @@
 			<main>
 				<div class="content_inner">
 					<h3>？にあてはまるおんぷはどれかな</h3>
-					<div class="swiper-container">
-						<!-- Additional required wrapper -->
-						<div class="swiper-wrapper">
-							<!-- Slides -->
-							<div class="swiper-slide">
-								<?php include "./element/mainContent.php"; ?>
-							</div>
-							<div class="swiper-slide">
-								<?php include "./element/mainContent.php"; ?>
-							</div>
-							<div class="swiper-slide">
-								<?php include "./element/mainContent.php"; ?>
-							</div>
-							...
-						</div>
-						<!-- If we need pagination -->
-						<div class="swiper-pagination"></div>
+					<?php include "./element/score__vuedraggable.php"; ?>
 
-						<!-- If we need navigation buttons -->
-						<div class="swiper-button-prev"></div>
-						<div class="swiper-button-next"></div>
-					</div>
-
-					<!--回答エリア-->
-					<section>
-						<div class="flex-area relative">
-							<div class="list-area flex-area mg-10">
-								<div class="box box--border box--draggable note--half" id="note-half" draggable="true"></div>
-								<div class="box box--border box--draggable note--quaterDot" id="note-quaterDot" draggable="true"></div>
-								<div class="box box--border box--draggable note--quater" id="note-quater" draggable="true"></div>
-								<div class="box box--border box--draggable note--eighth" id="note-eighth" draggable="true"></div>
-
-							</div>
-							<div class="mg-10 btn-sound-frame">
-								<div class="btn-circle btn-sound" onclick="playSound(2) , barActive()">
-									<span><i class="fas fa-music"></i></span>
-								</div>
-							</div>
-						</div>
-					</section>
 					<!--操作パネル-->
 					<section class="mess-area flex-area">
 						<p class="mess"></p>
@@ -98,23 +63,9 @@
 
 			<!--scripts-->
 			<script src="./js/index.js"></script>
-			<script>
-			var mySwiper = new Swiper('.swiper-container', {
-				loop: true,
-				slidesPerView: 2,
-				spaceBetween: 10,
-				centeredSlides: true,
-				pagination: '.swiper-pagination',
-				nextButton: '.swiper-button-next',
-				prevButton: '.swiper-button-prev',
-				breakpoints: {
-					767: {
-						slidesPerView: 1,
-						spaceBetween: 0
-					}
-				}
-			})
-			</script>
+			<script src="./js/swiper.js"></script>
+			<script src="./js/component/score.js"></script>
+
 	</body>
 
 </html>
