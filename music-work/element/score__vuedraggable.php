@@ -25,8 +25,8 @@
 	<div class="swiper-pagination"></div>
 
 	<!-- navigation buttons -->
-	<div class="swiper-button-prev"></div>
-	<div class="swiper-button-next"></div>
+	<div class="swiper-button-prev" onClick="click_prev()"></div>
+	<div class="swiper-button-next" onClick="click_next()"></div>
 </div>
 
 <!-- vue template -->
@@ -44,22 +44,18 @@
 			</div>
 			<!-- draggable items -->
 			<div>
-				<ul style="width: 100%; display: flex;">
-					<draggable :options="{group:'ITEMS'}" class="flex-area">
-						<li class="box" v-for="item, index in items" :key="item.no">{{item.name}}-(No.{{item.no}})</li>
-					</draggable>
-				</ul>
+				<draggable :options="{group:'ITEMS'}" class="flex-area">
+					<div class="box" v-for="item, index in items" :key="item.no" v-bind:class="item.className" ref="questionParts"></div>
+				</draggable>
 			</div>
 		</section>
 
 		<!--回答エリア-->
 		<!-- draggable items -->
 		<section class="flex-area relative">
-			<ul>
-				<draggable :options="{group:'ITEMS'}" class="flex-area">
-					<li class="box" v-for="item, index in items2" :key="item.no">{{item.name}}-(No.{{item.no}})</li>
-				</draggable>
-			</ul>
+			<draggable :options="{group:'ITEMS'}" class="flex-area">
+				<div v-for="item, index in items2" :key="item.no" class="box box--border" v-bind:class="item.className" ref="answerParts"></div>
+			</draggable>
 			<div class="mg-10 btn-sound-frame">
 				<div class="btn-circle btn-sound" onclick="playSound(2) , barActive()">
 					<span><i class="fas fa-music"></i></span>
@@ -67,4 +63,5 @@
 			</div>
 		</section>
 	</div>
+
 </script>

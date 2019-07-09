@@ -15,4 +15,5 @@ function checkAnswer(idName) {
 	} else {
 		mess[0].innerHTML = "ざんねん！";
 	}
+	// jSONファイルに書き込み
 }

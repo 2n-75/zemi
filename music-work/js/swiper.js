@@ -7,3 +7,10 @@ var mySwiper = new Swiper('.swiper-container', {
 	prevButton: '.swiper-button-prev',
 	pagination: '.swiper-pagination',
 });
+
+function click_next() {
+	console.log("next");
+}
+function click_prev() {
+	console.log("prev");
+}
