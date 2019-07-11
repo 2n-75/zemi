@@ -1,6 +1,6 @@
 /log
 /tmp
-/js
+/src
 *.css
 *.png
 *.wav
