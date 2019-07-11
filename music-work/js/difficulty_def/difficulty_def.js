@@ -6,16 +6,28 @@ import { average } from "./calculate";
 import { NOTES_DATA, TEST_DATA } from './const';
 
 /* 実行 */
-function main(notesArray) {
+function calc_difficulty(notesArray) {
 	// もっともよく使われている音符の平均難易度と平均音価
 	const { Dp, aveL } = calc_average(notesArray);
 	console.log("一番多く使われている音符の平均難易度は" + Dp + " 平均音価は" + aveL);
-
-	const { Amax, Smax } = calc_maxLimit(aveL, Dp, notesArray);
-	console.log("Amax:" + Amax + " Smax:" + Smax);
+	const { A, S } = calc_sumValue(aveL, Dp, notesArray);
+	return Dp + A - S;
 }
-main(TEST_DATA);
+console.log("この譜面の難易度は:" + calc_difficulty(TEST_DATA));
 
+/* 便利関数 */
+// 音符の長さから難易度を返す
+function L_to_Dc(l) {
+	let dc = 0;
+	for (let i = 0; i < NOTES_DATA.length; i++) {
+		if (NOTES_DATA[i].L == l) {
+			dc = NOTES_DATA[i].Dc;
+		}
+	}
+	return dc;
+}
+
+/* こっからただの計算 */
 // もっともよく使われている音符の平均音価と平均難易度を求める
 function calc_average(_data) {
 	const countsList = appearanceCounter(_data);
@@ -43,23 +55,36 @@ function appearanceCounter(_data) {
 	}
 	return counts;
 }
-
-// 音符の長さから難易度を返す
-function L_to_Dc(l) {
-	let dc = 0;
-	for (let i = 0; i < NOTES_DATA.length; i++) {
-		if (NOTES_DATA[i].L == l) {
-			dc = NOTES_DATA[i].Dc;
+// 合計加算値A, 合計減算値Sを求める
+function calc_sumValue(aveL, Dp, notesArray) {
+	let notesNum = 0;
+	// 長さがaveL(頻出音価)より短い音符の総数をNs、長い音符の総数をNlとする
+	let Dsn = [];
+	let Dln = [];
+	for (let i = 0; i < notesArray.length; i++) {
+		if (notesArray[i] != aveL) {
+			notesNum += 1;
+			if (notesArray[i] < aveL) {
+				Dsn.push(L_to_Dc(notesArray[i]));
+			} else if (notesArray[i] > aveL) {
+				Dln.push(L_to_Dc(notesArray[i]));
+			}
 		}
 	}
-	return dc;
-}
 
-// 1回あたりの比較で増加または減少され得る値の上限値Amax, Smaxを求める
-function calc_maxLimit(aveL, Dp, notesArray) {
-	let notesNum = 0;
-	for (let i = 0; i < notesArray.length; i++) {
-		if (notesArray[i] != aveL) notesNum += 1;
+	// 1回の比較で増加、減少され得る上限値
+	let Amax = (10 - Dp) / notesNum;
+	let Smax = (Dp - 1) / notesNum;
+
+	// 合計加算値
+	let A = 0;
+	for (let i = 0; i < Dsn.length; i++) {
+		A += ((Dsn[i] - Dp) / Dp) * Amax;
 	}
-	return { Amax: (10 - Dp) / notesNum, Smax: (Dp - 1) / notesNum };
+	// 合計減算値
+	let S = 0;
+	for (let i = 0; i < Dln.length; i++) {
+		S += ((Dp - Dln[i]) / Dp) * Smax;
+	}
+	return { A, S };
 }
