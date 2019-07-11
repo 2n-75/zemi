@@ -21,14 +21,6 @@ Vue.component('score', {
 
 	},
 	mounted() {
-		//className参照ができればこの下のコードはいらない
-		// 回答パーツ
-		/*	const answerParts = this.$refs.answerParts;
-			for (let i = 0; i < answerParts.length; i++) {
-				const className = answerParts[i].classList;
-
-			}*/
-
 		// 問題パーツ
 		const questionParts = this.$refs.questionParts;
 		for (let i = 0; i < questionParts.length; i++) {
@@ -42,10 +34,13 @@ Vue.component('score', {
 	},
 	methods: {
 		start: function (e) {
-			e.dataTransfer.setData('text', this.id);
+			//e.dataTransfer.setData('text', this.id);
+		},
+		update: function (e) {
+			console.log(e.currentTarget);
 		},
 		// endかaddかちょっと微妙
-		end: function (e) {
+		add: function (e) {
 			e.preventDefault();
 			zone.appendChild(e.target);
 			// はてなボックスを消す
@@ -53,6 +48,8 @@ Vue.component('score', {
 			console.log(blackbox);
 			blackbox.classList.add("hidden");
 
+			//
+			console.log(e.currentTarget);
 			checkAnswer(e.currentTarget.id);
 
 		},
