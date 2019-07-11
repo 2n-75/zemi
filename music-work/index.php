@@ -13,8 +13,8 @@
 		<script src="//cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js"></script>
 
-		<script src="./js/animation.js"></script>
-		<script src="./js/sound.js"></script>
+		<script src="./js/object/animation.js"></script>
+		<script src="./js/object/sound.js"></script>
 
 		<!--stylesheet-->
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
@@ -63,7 +63,7 @@
 
 			<!--scripts-->
 			<script src="./js/index.js"></script>
-			<script src="./js/swiper.js"></script>
+			<script src="./js/object/swiper.js"></script>
 			<script src="./js/component/score.js"></script>
 
 	</body>

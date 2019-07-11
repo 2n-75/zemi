@@ -43,18 +43,17 @@
 				<div class="box--pos4 hint hint--quater hidden"></div>
 			</div>
 			<!-- draggable items -->
-			<div>
-				<draggable :options="{group:'ITEMS'}" class="flex-area">
-					<div class="box" v-for="item, index in items" :key="item.no" v-bind:class="item.className" ref="questionParts"></div>
-				</draggable>
-			</div>
+
+			<draggable :options="{group:'ITEMS'}" class="flex-area">
+				<div class="box" v-for="item, index in items" v-bind:key="item.no" v-bind:class="item.className" ref="questionParts"></div>
+			</draggable>
 		</section>
 
 		<!--回答エリア-->
 		<!-- draggable items -->
 		<section class="flex-area relative">
 			<draggable :options="{group:'ITEMS'}" class="flex-area">
-				<div v-for="item, index in items2" :key="item.no" class="box box--border" v-bind:class="item.className" ref="answerParts"></div>
+				<div class="box box--border" v-for="item, index in items2" v-bind:key="item.no" v-bind:class="item.className" ref="answerParts"></div>
 			</draggable>
 			<div class="mg-10 btn-sound-frame">
 				<div class="btn-circle btn-sound" onclick="playSound(2) , barActive()">
