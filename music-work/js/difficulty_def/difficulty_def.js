@@ -7,6 +7,7 @@ import { NOTES_DATA, TEST_DATA } from './const';
 
 /* 実行 */
 function calc_difficulty(notesArray) {
+	console.log("入力データ:" + notesArray);
 	// もっともよく使われている音符の平均難易度と平均音価
 	const { Dp, aveL } = calc_average(notesArray);
 	console.log("一番多く使われている音符の平均難易度は" + Dp + " 平均音価は" + aveL);
@@ -71,6 +72,13 @@ function calc_sumValue(aveL, Dp, notesArray) {
 			}
 		}
 	}
+	// Dsn, Dlnの重複をなくす(あったほうがいいのか？)
+	Dsn = Dsn.filter(function (x, i, self) {
+		return self.indexOf(x) === i;
+	});
+	Dln = Dln.filter(function (x, i, self) {
+		return self.indexOf(x) === i;
+	});
 
 	// 1回の比較で増加、減少され得る上限値
 	let Amax = (10 - Dp) / notesNum;
@@ -79,12 +87,14 @@ function calc_sumValue(aveL, Dp, notesArray) {
 	// 合計加算値
 	let A = 0;
 	for (let i = 0; i < Dsn.length; i++) {
-		A += ((Dsn[i] - Dp) / Dp) * Amax;
+		let tmp = (Dsn[i] - Dp) / Dp;
+		A += tmp * Amax;
 	}
 	// 合計減算値
 	let S = 0;
 	for (let i = 0; i < Dln.length; i++) {
-		S += ((Dp - Dln[i]) / Dp) * Smax;
+		let tmp = (Dp - Dln[i]) / Dp;
+		S += tmp * Smax;
 	}
 	return { A, S };
 }

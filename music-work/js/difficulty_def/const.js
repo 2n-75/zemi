@@ -8,4 +8,4 @@ export const NOTES_DATA = [
 ];
 
 // 楽譜のテストデータ
-export const TEST_DATA = [1, 0.5, 0.5, 1, 2]; // それぞれの音符のL
+export const TEST_DATA = [1, 0.5, 0.5, 1, 0.5, 0.5]; // それぞれの音符のL
