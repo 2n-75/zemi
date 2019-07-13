@@ -12,7 +12,7 @@ function calc_difficulty(notesArray) {
 	const { Dp, aveL } = calc_average(notesArray);
 	console.log("一番多く使われている音符の平均難易度は" + Dp + " 平均音価は" + aveL);
 	const { A, S } = calc_sumValue(aveL, Dp, notesArray);
-	return Dp + A - S;
+	return Math.round(Dp + A - S);
 }
 console.log("この譜面の難易度は:" + calc_difficulty(TEST_DATA));
 
