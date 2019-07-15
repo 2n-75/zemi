@@ -1,43 +1,50 @@
 // button-counter と呼ばれる新しいコンポーネントを定義します
+import { addImgClass } from './addClass.js';
+const NOTES_DATA = [1, 0.5, 0.5, 1, 1];
 const ansNum = 2;
-const notes = [2, 0, 1, 1];
 Vue.component('score', {
 	template: '#score-template',
 	data: function () {
 		return {
 			items: [
-				{ no: 1, name: 'pos1', categoryNo: '1', className: addImgClass(notes[0]) },
-				{ no: 2, name: 'pos2', categoryNo: '1', className: addImgClass(notes[1]) },
-				{ no: 3, name: 'pos3', categoryNo: '1', className: addImgClass(notes[2]) },
-				{ no: 4, name: 'pos4', categoryNo: '1', className: addImgClass(notes[3]) },
+				// 出題内容によって変化する. mounted()で定義
 			],
 			items2: [
-				{ no: 5, name: '二分音符', categoryNo: '2', className: 'note--half' },
-				{ no: 6, name: '四分音符', categoryNo: '2', className: 'note--quater' },
-				{ no: 7, name: '付点四分音符', categoryNo: '2', className: 'note--quaterDot' },
-				{ no: 8, name: '八分音符', categoryNo: '2', className: 'note--eighth' },
-			]
+				{ no: 1, name: '全音符', length: 4, className: 'note--full' },
+				{ no: 2, name: '付点二分音符', length: 3, className: 'note--halfDot' },
+				{ no: 3, name: '二分音符', length: 2, className: 'note--half' },
+				{ no: 4, name: '付点四分音符', length: 1.5, className: 'note--quaterDot' },
+				{ no: 5, name: '四分音符', length: 1, className: 'note--quater' },
+				{ no: 6, name: '八分音符', length: 0.5, className: 'note--eighth' },
+			],
+			leftEnd: 15,
+			rightEnd: 90
 		}
-
 	},
 	mounted() {
-		// 問題パーツ
-		const questionParts = this.$refs.questionParts;
-		for (let i = 0; i < questionParts.length; i++) {
-			const className = questionParts[i].classList;
-			className.add(addPosClass(i));
-			//
+		// boxの作成
+		for (let i = 0; i < NOTES_DATA.length; i++) {
+			this.items.push({ length: NOTES_DATA[i], className: addImgClass(NOTES_DATA[i]), boxPos: 20 });
+		}
+		// 位置のクラス付与
+		for (let i = 0; i < this.items.length; i++) {
+			const posRange = this.rightEnd - this.leftEnd;
+			const interval = posRange / NOTES_DATA.length;
+			this.items[i].boxPos = this.leftEnd + interval * i;
+
+			// ハテナボックスと被るところは隠す
 			if (i == ansNum) {
-				className.add("hidden");
+				// this.items[i].className += "hidden";
 			}
 		}
 	},
 	methods: {
 		start: function (e) {
+			console.log("start" + e.target);
 			//e.dataTransfer.setData('text', this.id);
 		},
 		update: function (e) {
-			console.log(e.currentTarget);
+			console.log("update" + e.currentTarget);
 		},
 		// endかaddかちょっと微妙
 		add: function (e) {
@@ -53,40 +60,14 @@ Vue.component('score', {
 			checkAnswer(e.currentTarget.id);
 
 		},
+		end: function (e) {
+			console.log("end" + e.target);
+		}
 	},
 });
-function addImgClass(index) {
-	switch (index) {
-		case 0:
-			break;
-		case 1:
-			return "note--quater";
-		case 2:
-			return "note--half";
-		case 3:
-			return "note--quaterDot";
-		case 4:
-			return "note--eighth";
-		default:
-			break;
-	}
-}
-function addPosClass(index) {
-	switch (index) {
-		case 0:
-			return "box--pos1";
-		case 1:
-			return "box--pos2";
-		case 2:
-			return "box--pos3";
-		case 3:
-			return "box--pos4";
-		default:
-			break;
-	}
-}
+
 
 // #score-componentの中で使えるようになる
 new Vue({
-	el: '#score-component'
+	el: 'main'
 })

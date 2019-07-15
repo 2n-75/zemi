@@ -52,17 +52,25 @@ $beat4: 74%;
 
 // 画像
 .note {
-  &--quater {
+  &--full {
+    // 画像用意する
+    background-image: url(../../img/notes/note_quater.png);
+  }
+  &--halfDot {
+    // 画像用意する
     background-image: url(../../img/notes/note_quater.png);
   }
   &--half {
     background-image: url(../../img/notes/note_half.png);
   }
-  &--eighth {
-    background-image: url(../../img/notes/note_eighth.png);
-  }
   &--quaterDot {
     background-image: url(../../img/notes/note_quaterDot.png);
+  }
+  &--quater {
+    background-image: url(../../img/notes/note_quater.png);
+  }
+  &--eighth {
+    background-image: url(../../img/notes/note_eighth.png);
   }
 }
 

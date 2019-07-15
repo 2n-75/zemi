@@ -36,6 +36,10 @@
     background-color: $mintGreen;
   }
 
+  .dropzone__inner {
+    @include dropzoneHeight;
+  }
+
   // 音符パーツ
   .box--pos1,
   .box--pos2,

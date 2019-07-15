@@ -1,3 +1,4 @@
+/* 計算系 */
 export function sum(arr, fn) {
 	if (fn) {
 		return sum(arr.map(fn));

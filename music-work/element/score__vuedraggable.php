@@ -1,39 +1,35 @@
-<!--
-横スクロールができる譜面
--->
-<div id="score-component" class="swiper-container">
+<!-- Slider main container -->
+<div class="swiper-container">
 	<!-- Additional required wrapper -->
 	<div class="swiper-wrapper">
 		<!-- Slides -->
 		<div class="swiper-slide">
+			Slide 1
 			<score></score>
 		</div>
 		<div class="swiper-slide">
+			Slide 2
 			<score></score>
 		</div>
 		<div class="swiper-slide">
+			Slide 3
 			<score></score>
 		</div>
-		<div class="swiper-slide">
-			<score></score>
-		</div>
-		<div class="swiper-slide">
-			<score></score>
-		</div>
+		...
 	</div>
-	<!-- pagination -->
+	<!-- If we need pagination -->
 	<div class="swiper-pagination"></div>
 
-	<!-- navigation buttons -->
-	<div class="swiper-button-prev" onClick="click_prev()"></div>
-	<div class="swiper-button-next" onClick="click_next()"></div>
+	<!-- If we need navigation buttons -->
+	<div class="swiper-button-prev"></div>
+	<div class="swiper-button-next"></div>
 </div>
 
 <!-- vue template -->
 <script type="text/x-template" id="score-template">
 	<div>
 		<!--出題エリア-->
-		<section id="dropzone" class="dropzone relative flex-area">
+		<section id="dropzone" class="dropzone">
 			<div>
 				<p class="middleLine"></p>
 				<p id="timing-bar" class="timing-bar absolute">|</p>
@@ -44,14 +40,14 @@
 			</div>
 			<!-- draggable items -->
 
-			<draggable :options="{group:'ITEMS'}" class="flex-area">
-				<div class="box" v-for="item, index in items" v-bind:key="item.no" v-bind:class="item.className" ref="questionParts"></div>
+			<draggable :options="{group:'ITEMS'}" class="dropzone__inner flex-area">
+				<div class="box absolute" v-for="item, index in items" v-bind:key="item.no" v-bind:class="item.className" v-bind:style="{left: item.boxPos + '%' }"></div>
 			</draggable>
 		</section>
 
 		<!--回答エリア-->
 		<!-- draggable items -->
-		<section class="flex-area relative">
+		<section class="relative">
 			<draggable :options="{group:'ITEMS'}" class="flex-area">
 				<div class="box box--border" v-for="item, index in items2" v-bind:key="item.no" v-bind:class="item.className" ref="answerParts"></div>
 			</draggable>

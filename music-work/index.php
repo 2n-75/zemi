@@ -13,13 +13,13 @@
 		<script src="//cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js"></script>
 
-		<script src="./js/object/animation.js"></script>
-		<script src="./js/object/sound.js"></script>
+		<script type="module" src="./js/object/animation.js"></script>
+		<script type="module" src="./js/object/sound.js"></script>
 
 		<!--stylesheet-->
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
 		<link rel="stylesheet" href="./css/foundation/reset.css">
 		<link rel="stylesheet" href="./css/layout/layout.css">
 		<link rel="stylesheet" href="./css/object/objects.css">
@@ -27,7 +27,6 @@
 	</head>
 
 	<body>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>
 		<div class="container">
 			<header>
 				<div class="content_inner">
@@ -45,27 +44,26 @@
 				<div class="content_inner">
 					<h3>？にあてはまるおんぷはどれかな</h3>
 					<?php include "./element/score__vuedraggable.php"; ?>
-
-					<!--操作パネル-->
-					<section class="mess-area flex-area">
-						<p class="mess"></p>
-						<a href="" onclick="window.location.reload()">もういちど</a>
-					</section>
 				</div>
+				<!--操作パネル-->
+				<section class="mess-area flex-area">
+					<p class="mess"></p>
+					<a href="" onclick="window.location.reload()">もういちど</a>
+				</section>
+		</div>
 
-			</main>
-			<footer>
-				<div class="content_inner">
-					footer
-				</div>
-			</footer>
+		</main>
+		<footer>
+			<div class="content_inner">
+				footer
+			</div>
+		</footer>
 
-
-			<!--scripts-->
-			<script src="./js/index.js"></script>
-			<script src="./js/object/swiper.js"></script>
-			<script src="./js/component/score.js"></script>
-
+		<!--scripts-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
+		<script src="./js/index.js"></script>
+		<script src="./js/object/swiper.js"></script>
+		<script type="module" src="./js/component/score.js"></script>
 	</body>
 
 </html>
