@@ -7,7 +7,7 @@
 
 main {
   .content__inner {
-    width: 80%;
+    width: 90%;
     margin: 10px auto;
     padding: 10px;
     @include mq-down(md) {
@@ -15,6 +15,7 @@ main {
     }
   }
   h3 {
+    margin: 0 10%;
     color: #555;
     font-size: 1.2em;
     padding: 1em 0.5em;

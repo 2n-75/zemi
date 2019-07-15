@@ -21,7 +21,7 @@
 </div>
 <!-- vue template -->
 <script type="text/x-template" id="score-template">
-	<div>
+	<div style="width: 80%; margin: 0 10%">
 		<!--出題エリア-->
 		<section id="dropzone" class="dropzone">
 			<div>

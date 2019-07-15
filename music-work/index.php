@@ -61,7 +61,6 @@
 
 			<script src="./js/index.js"></script>
 			<script src="./src/component/score.js"></script>
-
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
 			<script src="./js/object/swiper.js"></script>
 	</body>
