@@ -29,7 +29,7 @@
 	<body>
 		<div class="container">
 			<header>
-				<div class="content_inner">
+				<div class="content__inner">
 					<a href="" class="btn-circle">
 						<span><i class="fas fa-arrow-left"></i></span>
 						<!--トップページを作る-->
@@ -41,29 +41,29 @@
 				</div>
 			</header>
 			<main>
-				<div class="content_inner">
+				<div class="content__inner">
 					<h3>？にあてはまるおんぷはどれかな</h3>
-					<?php include "./element/score__vuedraggable.php"; ?>
+					<?php include "./element/score__template.php" ?>
+
+					<section class="mess-area flex-area">
+						<p class="mess"></p>
+						<a href="" onclick="window.location.reload()">もういちど</a>
+					</section>
 				</div>
-				<!--操作パネル-->
-				<section class="mess-area flex-area">
-					<p class="mess"></p>
-					<a href="" onclick="window.location.reload()">もういちど</a>
-				</section>
-		</div>
+			</main>
+			<footer>
+				<div class="content__inner">
+					footer
+				</div>
+			</footer>
 
-		</main>
-		<footer>
-			<div class="content_inner">
-				footer
-			</div>
-		</footer>
+			<!--scripts-->
 
-		<!--scripts-->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
-		<script src="./js/index.js"></script>
-		<script src="./js/object/swiper.js"></script>
-		<script type="module" src="./js/component/score.js"></script>
+			<script src="./js/index.js"></script>
+			<script src="./src/component/score.js"></script>
+
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
+			<script src="./js/object/swiper.js"></script>
 	</body>
 
 </html>
