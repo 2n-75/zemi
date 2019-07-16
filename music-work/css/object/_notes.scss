@@ -10,10 +10,11 @@ $beat4: 74%;
 .box {
   width: 80px;
   height: 100px;
-  top: 15px;
+  top: 20px;
   margin: 10px;
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 0;
   @include mq-down(md) {
     width: 60px;
     height: 75px;
@@ -52,13 +53,13 @@ $beat4: 74%;
 
 // 画像
 .note {
-  &--full {
+  &--whole {
     // 画像用意する
-    background-image: url(../../img/notes/note_quater.png);
+    background-image: url(../../img/notes/note_whole.png);
   }
   &--halfDot {
     // 画像用意する
-    background-image: url(../../img/notes/note_quater.png);
+    background-image: url(../../img/notes/note_halfDot.png);
   }
   &--half {
     background-image: url(../../img/notes/note_half.png);
@@ -79,20 +80,29 @@ $beat4: 74%;
 }
 .hint {
   border: 2px solid $orange;
+  z-index: 1;
+  &--whole {
+    background-image: url(../../img/hint/hint-whole.png);
+    opacity: 0.8;
+  }
+  &--halfDot {
+    background-image: url(../../img/hint/hint-halfDot.png);
+    opacity: 0.8;
+  }
   &--half {
-    background-image: url(../../img/hint/hint2.png);
-    opacity: 0.7;
+    background-image: url(../../img/hint/hint-half.png);
+    opacity: 0.8;
   }
   &--quaterDot {
-    background-image: url(../../img/hint/hint3.png);
-    opacity: 0.7;
+    background-image: url(../../img/hint/hint-quaterDot.png);
+    opacity: 0.8;
   }
   &--quater {
-    background-image: url(../../img/hint/hint4.png);
-    opacity: 0.7;
+    background-image: url(../../img/hint/hint-quater.png);
+    opacity: 0.8;
   }
   &--eighth {
-    background-image: url(../../img/hint/hint8.png);
-    opacity: 0.7;
+    background-image: url(../../img/hint/hint-eighth.png);
+    opacity: 0.8;
   }
 }

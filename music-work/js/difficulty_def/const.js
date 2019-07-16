@@ -1,4 +1,4 @@
-import { set_notesData } from "./set_notesData";
+import { set_notesData } from "./set_notesData.js";
 /* 定数はこのファイルにまとめる */
 // 音符の長さと難易度のデータ
 export const NOTES_DATA = [

@@ -27,11 +27,9 @@
 			<div>
 				<p class="middleLine"></p>
 				<p id="timing-bar" class="timing-bar absolute">|</p>
-				<div class="box--pos1 hint hint--half hidden"></div>
-				<div id="blackbox" class="box--pos3 box--border blackbox"></div>
-				<div class="box--pos3 hint hint--quater hidden"></div>
-				<div class="box--pos4 hint hint--quater hidden"></div>
-			</div>
+				<div class="box absolute hint hidden" v-for="item, index in hints" v-bind:key="item.no" v-bind:class="item.className" v-bind:style="{left: item.boxPos + '%' }"></div>
+				<!--<div id="blackbox" class="box--pos3 box--border blackbox"></div>-->
+				</div>
 			<!-- draggable items -->
 
 			<draggable :options="{group:'ITEMS'}" class="dropzone__inner flex-area">
@@ -43,10 +41,10 @@
 		<!-- draggable items -->
 		<section class="relative">
 			<draggable :options="{group:'ITEMS'}" class="flex-area">
-				<div class="box box--border" v-for="item, index in items2" v-bind:key="item.no" v-bind:class="item.className" ref="answerParts"></div>
+				<div class="box box--border" v-for="item, index in items2" v-bind:key="item.no" v-bind:class="item.className"></div>
 			</draggable>
 			<div class="mg-10 btn-sound-frame">
-				<div class="btn-circle btn-sound" onclick="playSound(2) , barActive()">
+				<div class="btn-circle btn-sound absolute" onclick="playSound(2) , barActive()">
 					<span><i class="fas fa-music"></i></span>
 				</div>
 			</div>
