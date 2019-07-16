@@ -1,12 +1,13 @@
 // button-counter と呼ばれる新しいコンポーネントを定義します
 import { TEST_DATA } from '../difficulty_def/const.js';
-const NOTES_DATA = TEST_DATA;
-//const NOTES_DATA = [1, 0.5, 0.5, 1, 1];
+import { calc_difficulty } from '../difficulty_def/difficulty_def.js'; // 難易度計算
+
+//const TEST_DATA = [1, 0.5, 0.5, 1, 1];
 const ansNum = 2;
 Vue.component('score', {
 	template: '#score-template',
 	props: {
-		//NOTES_DATA: Array
+		//TEST_DATA: Array
 	},
 	data: function () {
 		return {
@@ -30,14 +31,14 @@ Vue.component('score', {
 	},
 	mounted() {
 		// boxの作成
-		for (let i = 0; i < NOTES_DATA.length; i++) {
-			this.items.push({ length: NOTES_DATA[i], className: addImgClass(NOTES_DATA[i], 'note'), boxPos: 20 });
-			this.hints.push({ length: NOTES_DATA[i], className: addImgClass(NOTES_DATA[i], 'hint'), boxPos: 20 });
+		for (let i = 0; i < TEST_DATA.length; i++) {
+			this.items.push({ length: TEST_DATA[i], className: addImgClass(TEST_DATA[i], 'note'), boxPos: 20 });
+			this.hints.push({ length: TEST_DATA[i], className: addImgClass(TEST_DATA[i], 'hint'), boxPos: 20 });
 		}
 		// 位置のクラス付与
 		for (let i = 0; i < this.items.length; i++) {
 			const posRange = this.rightEnd - this.leftEnd;
-			const interval = posRange / NOTES_DATA.length;
+			const interval = posRange / TEST_DATA.length;
 			this.items[i].boxPos = this.leftEnd + interval * i;
 			this.hints[i].boxPos = this.leftEnd + interval * i;
 

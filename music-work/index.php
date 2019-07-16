@@ -15,7 +15,6 @@
 
 		<script src="./js/object/animation.js"></script>
 		<script src="./js/object/sound.js"></script>
-		<script type="modules" src="./js/difficulty_def/const.js"></script>
 
 		<!--stylesheet-->
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">

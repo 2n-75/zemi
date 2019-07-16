@@ -2,11 +2,11 @@
 譜面の難易度を判定する
 */
 
-import { average } from "./calculate";
-import { NOTES_DATA, TEST_DATA } from './const';
+import { average } from "./calculate.js";
+import { NOTES_DATA, TEST_DATA } from './const.js';
 
 /* 実行 */
-function calc_difficulty(notesArray) {
+export function calc_difficulty(notesArray) {
 	console.log("入力データ:" + notesArray);
 	// もっともよく使われている音符の平均難易度と平均音価
 	const { Dp, aveL } = calc_average(notesArray);
