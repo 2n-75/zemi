@@ -2,7 +2,7 @@
 export function levelDef(difficulty, EASY, HARD) {
 	if (HARD < difficulty) {
 		return 'difficult';
-	} else if (EASY < difficulty <= HARD) {
+	} else if (EASY < difficulty && difficulty <= HARD) {
 		return 'normal';
 	} else {
 		return 'easy';

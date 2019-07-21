@@ -15,11 +15,11 @@ function makeQuestion() {
 
 	// 難易度を調べる
 	const difficulty = calcDifficulty(TEST_DATA);
-	console.log("難易度:" + difficulty);
+	console.log("難易度: " + difficulty);
 
 	// レベルを調べる
 	const _level = levelDef(difficulty, EASY, HARD);
-	console.log(_level);
+	console.log("レベル: " + _level);
 
 	if (_level != LEVEL) {
 		makeQuestion();

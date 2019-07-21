@@ -36,5 +36,17 @@ export function setNotesData() {
 		}
 	}
 	if (noteShow) notesData.push(noteLength);
-	return notesData;
+
+	let reTry = false;
+	// 長さが2.5の音符がないので2.5がでた時はやり直す
+	for (let i = 0; i < notesData.length; i++) {
+		if (notesData[i] == 2.5) {
+			reTry = true;
+		}
+	}
+	if (reTry) {
+		setNotesData();
+	} else {
+		return notesData;
+	}
 }

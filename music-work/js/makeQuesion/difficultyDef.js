@@ -7,10 +7,10 @@ import { NOTES_DATA } from './const.js';
 
 /* 実行 */
 export function calcDifficulty(notesArray) {
-	console.log("入力データ:" + notesArray);
+	// console.log("入力データ:" + notesArray);
 	// もっともよく使われている音符の平均難易度と平均音価
 	const { Dp, aveL } = calc_average(notesArray);
-	console.log("一番多く使われている音符の平均難易度は" + Dp + " 平均音価は" + aveL);
+	// console.log("一番多く使われている音符の平均難易度は" + Dp + " 平均音価は" + aveL);
 	const { A, S } = calc_sumValue(aveL, Dp, notesArray);
 	return Math.round(Dp + A - S);
 }
