@@ -2,7 +2,6 @@
 import { TEST_DATA } from '../difficulty_def/const.js';
 //import { calc_difficulty } from '../difficulty_def/difficulty_def.js'; // 難易度計算
 
-//const TEST_DATA = [1, 0.5, 0.5, 1, 1];
 const ansNum = 2;
 Vue.component('score', {
 	template: '#score-template',
@@ -17,7 +16,14 @@ Vue.component('score', {
 			hints: [
 				// 出題内容によって変化する. mounted()で定義
 			],
-			items2: [{ no: 1, name: '全音符', length: 4, className: 'note--whole' }, { no: 2, name: '付点二分音符', length: 3, className: 'note--halfDot' }, { no: 3, name: '二分音符', length: 2, className: 'note--half' }, { no: 4, name: '付点四分音符', length: 1.5, className: 'note--quaterDot' }, { no: 5, name: '四分音符', length: 1, className: 'note--quater' }, { no: 6, name: '八分音符', length: 0.5, className: 'note--eighth' }],
+			items2: [
+				{ no: 0, name: '全音符', length: 4, className: 'note--whole' },
+				{ no: 1, name: '付点二分音符', length: 3, className: 'note--halfDot' },
+				{ no: 2, name: '二分音符', length: 2, className: 'note--half' },
+				{ no: 3, name: '付点四分音符', length: 1.5, className: 'note--quaterDot' },
+				{ no: 4, name: '四分音符', length: 1, className: 'note--quater' },
+				{ no: 5, name: '八分音符', length: 0.5, className: 'note--eighth' }
+			],
 			leftEnd: 15,
 			rightEnd: 90
 		};
@@ -42,29 +48,18 @@ Vue.component('score', {
 		}
 	},
 	methods: {
-		start: function (e) {
-			console.log("start" + e.target);
-			//e.dataTransfer.setData('text', this.id);
+		noteClick: function (len) {
+			console.log(len);
+			const answerNote = this.items[ansNum];
+			if (answerNote.length == len) {
+				// はてなボックスを消す
+				console.log(this.items[ansNum].className);
+				this.items[ansNum].className = this.items[ansNum].className.replace(/box--border blackbox/g, '');
+				console.log(this.items[ansNum].className);
+			} else {
+				console.log("まちがえた");
+			}
 		},
-		update: function (e) {
-			console.log("update" + e.currentTarget);
-		},
-		// endかaddかちょっと微妙
-		add: function (e) {
-			e.preventDefault();
-			zone.appendChild(e.target);
-			// はてなボックスを消す
-			blackbox = document.getElementById("blackbox");
-			console.log(blackbox);
-			blackbox.classList.add("hidden");
-
-			//
-			console.log(e.currentTarget);
-			checkAnswer(e.currentTarget.id);
-		},
-		end: function (e) {
-			console.log("end" + e.target);
-		}
 	}
 });
 

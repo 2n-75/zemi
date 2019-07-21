@@ -4,6 +4,7 @@ function showHint() {
 	for (let i = 0; i < hints.length; i++) {
 		hints[i].classList.toggle("hidden");
 	}
+	// しばらく経ったらヒントが消える
 }
 
 /* 正誤判定 */

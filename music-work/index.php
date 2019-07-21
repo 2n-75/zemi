@@ -58,8 +58,8 @@
 			</footer>
 
 			<!--scripts-->
-			<script type="module" src="./src/index.js"></script>
-			<script type="module" src="src/difficulty_def/difficulty_def.js"></script>
+			<script src="./js/index.js"></script>
+			<script type="module" src="./src/difficulty_def/difficulty_def.js"></script>
 			<script type="module" src="./src/component/score.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
 			<script type="module" src="./src/object/swiper.js"></script>

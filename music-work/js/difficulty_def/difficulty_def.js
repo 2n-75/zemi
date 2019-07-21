@@ -6,6 +6,7 @@ import { average } from "./calculate.js";
 import { NOTES_DATA, TEST_DATA } from './const.js';
 
 /* 実行 */
+export const SCORE_DIFFICULTY = calc_difficulty(TEST_DATA);
 export function calc_difficulty(notesArray) {
 	console.log("入力データ:" + notesArray);
 	// もっともよく使われている音符の平均難易度と平均音価
