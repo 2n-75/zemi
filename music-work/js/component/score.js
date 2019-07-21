@@ -55,11 +55,9 @@ Vue.component('score', {
 			if (answerNote.length == len) {
 				// はてなボックスを消す
 				this.items[this.ansNum].className = this.items[this.ansNum].className.replace(/blackbox/g, '');
-				console.log("正解");
 				mess[0].innerHTML = "せいかい！";
 				showHint(false);
 			} else {
-				console.log("まちがえた");
 				mess[0].innerHTML = "ざんねん！";
 				showHint();
 			}
