@@ -1,5 +1,6 @@
 import { QUESTIONS } from '../makeQuesion/makeQuestion.js';
 import { addImgClass } from './addClass.js';
+import { showHint } from '../object/hint.js';
 
 Vue.component('score', {
 	template: '#score-template',
@@ -50,11 +51,17 @@ Vue.component('score', {
 		noteClick: function (len) {
 			// console.log(len);
 			const answerNote = this.items[this.ansNum];
+			const mess = document.getElementsByClassName("mess");
 			if (answerNote.length == len) {
 				// はてなボックスを消す
-				this.items[this.ansNum].className = this.items[this.ansNum].className.replace(/box--border blackbox/g, '');
+				this.items[this.ansNum].className = this.items[this.ansNum].className.replace(/blackbox/g, '');
+				console.log("正解");
+				mess[0].innerHTML = "せいかい！";
+				showHint(false);
 			} else {
 				console.log("まちがえた");
+				mess[0].innerHTML = "ざんねん！";
+				showHint();
 			}
 		},
 	}

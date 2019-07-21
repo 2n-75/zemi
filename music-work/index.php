@@ -35,7 +35,7 @@
 						<span><i class="fas fa-arrow-left"></i></span>
 						<!--トップページを作る-->
 					</a>
-					<div class="btn-circle f-right" onclick="showHint()">
+					<div id="hintBtn" class="btn-circle f-right">
 						<span><i class="fas fa-exclamation"></i></span>
 						<!--クリックしたらモーダルでヘルプを出す-->
 					</div>
@@ -48,7 +48,7 @@
 
 					<section class="mess-area flex-area">
 						<p class="mess"></p>
-						<a href="" onclick="window.location.reload()">もういちど</a>
+						<!--<a href="" onclick="window.location.reload()">もういちど</a>-->
 					</section>
 				</div>
 			</main>
@@ -59,7 +59,7 @@
 			</footer>
 
 			<!--scripts-->
-			<script src="./js/index.js"></script>
+			<script type="module" src="./js/object/hint.js"></script>
 			<script type="module" src="./js/component/score.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
 			<script type="module" src="./js/object/swiper.js"></script>
