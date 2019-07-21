@@ -2,7 +2,7 @@
 	譜面データをランダム生成する
 */
 
-export function set_notesData() {
+export function setNotesData() {
 	// 譜面生成の元になる配列。二拍分のデータ、1が八分音符、0が八分休符とする
 	const SORTDATA_HALF = [1, 1, 1, 1, 0, 0, 0];
 
@@ -18,7 +18,6 @@ export function set_notesData() {
 		}
 		Array.prototype.push.apply(notesDataBase, SORTDATA_HALF);
 	}
-	console.log(notesDataBase);
 
 	// ソートした配列から音価の配列を作る
 	const notesData = [];
