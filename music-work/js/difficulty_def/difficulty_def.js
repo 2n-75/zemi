@@ -33,11 +33,17 @@ function L_to_Dc(l) {
 function calc_average(_data) {
 	const countsList = appearanceCounter(_data);
 	// countsList.map(function (c) { return c.count; }) でcountsListからcountの列だけ取り出した配列ができる
-	const maxCount = Math.max.apply(null, countsList.map(function (x) { return x.count; }));
+	const maxCount = Math.max.apply(null, countsList.map(function (x) {
+		return x.count;
+	}));
 	// 最頻値のリスト
-	const L_mode = countsList.filter(x => x.count === maxCount).map(function (x) { return x.L; });
-	const Dc_mode = countsList.filter(x => x.count === maxCount).map(function (x) { return x.Dc; });
-	return { Dp: average(Dc_mode), aveL: average(L_mode) }
+	const L_mode = countsList.filter(x => x.count === maxCount).map(function (x) {
+		return x.L;
+	});
+	const Dc_mode = countsList.filter(x => x.count === maxCount).map(function (x) {
+		return x.Dc;
+	});
+	return { Dp: average(Dc_mode), aveL: average(L_mode) };
 }
 
 // 音符の難易度と出現回数のjsonを返す
@@ -50,7 +56,7 @@ function appearanceCounter(_data) {
 		for (let i = 0; i < _data.length; i++) {
 			let currentDc = L_to_Dc(_data[i]);
 			if (counts[j].Dc == currentDc) {
-				counts[j].count = (counts[j].count) ? counts[j].count + 1 : 1;
+				counts[j].count = counts[j].count ? counts[j].count + 1 : 1;
 			}
 		}
 	}

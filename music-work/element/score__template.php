@@ -19,6 +19,7 @@
 	<div class="swiper-button-prev"></div>
 	<div class="swiper-button-next"></div>
 </div>
+
 <!-- vue template -->
 <script type="text/x-template" id="score-template">
 	<div style="width: 80%; margin: 0 10%">
@@ -28,8 +29,7 @@
 				<p class="middleLine"></p>
 				<p id="timing-bar" class="timing-bar absolute">|</p>
 				<div class="box absolute hint hidden" v-for="item, index in hints" v-bind:key="item.no" v-bind:class="item.className" v-bind:style="{left: item.boxPos + '%' }"></div>
-				<!--<div id="blackbox" class="box--pos3 box--border blackbox"></div>-->
-				</div>
+			</div>
 			<!-- draggable items -->
 
 			<draggable :options="{group:'ITEMS'}" class="dropzone__inner flex-area">
