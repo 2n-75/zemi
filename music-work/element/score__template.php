@@ -1,20 +1,6 @@
-<div class="swiper-container">
+<div id="score-component" class="swiper-container">
 	<div class="swiper-wrapper">
-		<div class="swiper-slide">
-			<score></score>
-		</div>
-		<div class="swiper-slide">
-			<score></score>
-		</div>
-		<div class="swiper-slide">
-			<score></score>
-		</div>
-		<div class="swiper-slide">
-			<score></score>
-		</div>
-		<div class="swiper-slide">
-			<score></score>
-		</div>
+		<score v-for="question in questions" v-bind:key="question.id" v-bind:question="question"></score>
 	</div>
 	<div class="swiper-button-prev"></div>
 	<div class="swiper-button-next"></div>
@@ -22,7 +8,8 @@
 
 <!-- vue template -->
 <script type="text/x-template" id="score-template">
-	<div style="width: 80%; margin: 0 10%">
+	<div class="swiper-slide" >
+	<div class="swiper-slide__inner">
 		<!--出題エリア-->
 		<section id="dropzone" class="dropzone">
 			<div>
@@ -49,5 +36,6 @@
 				</div>
 			</div>
 		</section>
+		</div>
 	</div>
 </script>

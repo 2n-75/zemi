@@ -1,13 +1,9 @@
-// button-counter と呼ばれる新しいコンポーネントを定義します
-import { TEST_DATA } from '../difficulty_def/const.js';
-//import { calc_difficulty } from '../difficulty_def/difficulty_def.js'; // 難易度計算
+import { QUESTIONS } from '../makeQuesion/makeQuestion.js';
+import { addImgClass } from './addClass.js';
 
-const ansNum = 2;
 Vue.component('score', {
 	template: '#score-template',
-	props: {
-		//TEST_DATA: Array
-	},
+	props: ['question'],
 	data: function () {
 		return {
 			items: [
@@ -25,37 +21,38 @@ Vue.component('score', {
 				{ no: 5, name: '八分音符', length: 0.5, className: 'note--eighth' }
 			],
 			leftEnd: 15,
-			rightEnd: 90
+			rightEnd: 90,
+			ansNum: this.question.ansNum
 		};
 	},
 	mounted() {
+		const NOTES = this.question.notes;
+
 		// boxの作成
-		for (let i = 0; i < TEST_DATA.length; i++) {
-			this.items.push({ length: TEST_DATA[i], className: addImgClass(TEST_DATA[i], 'note'), boxPos: 20 });
-			this.hints.push({ length: TEST_DATA[i], className: addImgClass(TEST_DATA[i], 'hint'), boxPos: 20 });
+		for (let i = 0; i < NOTES.length; i++) {
+			this.items.push({ length: NOTES[i], className: addImgClass(NOTES[i], 'note'), boxPos: 20 });
+			this.hints.push({ length: NOTES[i], className: addImgClass(NOTES[i], 'hint'), boxPos: 20 });
 		}
 		// 位置のクラス付与
 		for (let i = 0; i < this.items.length; i++) {
 			const posRange = this.rightEnd - this.leftEnd;
-			const interval = posRange / TEST_DATA.length;
+			const interval = posRange / NOTES.length;
 			this.items[i].boxPos = this.leftEnd + interval * i;
 			this.hints[i].boxPos = this.leftEnd + interval * i;
 
 			// ハテナボックスと被るところは隠す
-			if (i == ansNum) {
+			if (i == this.ansNum) {
 				this.items[i].className += "box--border blackbox";
 			}
 		}
 	},
 	methods: {
 		noteClick: function (len) {
-			console.log(len);
-			const answerNote = this.items[ansNum];
+			// console.log(len);
+			const answerNote = this.items[this.ansNum];
 			if (answerNote.length == len) {
 				// はてなボックスを消す
-				console.log(this.items[ansNum].className);
-				this.items[ansNum].className = this.items[ansNum].className.replace(/box--border blackbox/g, '');
-				console.log(this.items[ansNum].className);
+				this.items[this.ansNum].className = this.items[this.ansNum].className.replace(/box--border blackbox/g, '');
 			} else {
 				console.log("まちがえた");
 			}
@@ -63,46 +60,9 @@ Vue.component('score', {
 	}
 });
 
-// #score-componentの中で使えるようになる
 new Vue({
-	el: 'main'
+	el: '#score-component',
+	data: {
+		questions: QUESTIONS
+	},
 });
-
-/* データからCSSのクラスを付与する */
-function addImgClass(len, mode) {
-	if (mode == 'note') {
-		switch (len) {
-			case 4:
-				return "note--whole ";
-			case 3:
-				return "note--halfDot ";
-			case 2:
-				return "note--half ";
-			case 1.5:
-				return "note--quaterDot ";
-			case 1:
-				return "note--quater ";
-			case 0.5:
-				return "note--eighth ";
-			default:
-				break;
-		}
-	} else if (mode == 'hint') {
-		switch (len) {
-			case 4:
-				return "hint--whole ";
-			case 3:
-				return "hint--halfDot ";
-			case 2:
-				return "hint--half ";
-			case 1.5:
-				return "hint--quaterDot ";
-			case 1:
-				return "hint--quater ";
-			case 0.5:
-				return "hint--eighth ";
-			default:
-				break;
-		}
-	}
-}

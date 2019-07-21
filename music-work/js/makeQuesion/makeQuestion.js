@@ -1,8 +1,8 @@
-import { EASY, HARD } from './const';
-import { setNotesData } from "./setNotesData";
-import { calcDifficulty } from "./difficultyDef";
-import { levelDef } from "./levelDef";
-const QUESTIONS = []; // コンポーネントに投げる出題データ
+import { EASY, HARD } from './const.js';
+import { setNotesData } from "./setNotesData.js";
+import { calcDifficulty } from "./difficultyDef.js";
+import { levelDef } from "./levelDef.js";
+export const QUESTIONS = []; // コンポーネントに投げる出題データ
 
 // レベルを選ぶ
 const LEVEL = 'normal'; // あとで最初のページで選べるようにする
@@ -24,15 +24,14 @@ function makeQuestion() {
 	if (_level != LEVEL) {
 		makeQuestion();
 	} else {
-		QUESTIONS.push(TEST_DATA);
+		QUESTIONS.push({
+			notes: TEST_DATA, ansNum: Math.floor(Math.random() * TEST_DATA.length)
+		});
 		return;
 	}
 }
 
 for (let index = 0; index < 5; index++) {
-	console.log("----------");
 	makeQuestion();
 	console.log("----------");
 }
-console.log(QUESTIONS);
-export default QUESTIONS;

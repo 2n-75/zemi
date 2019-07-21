@@ -2,8 +2,8 @@
 譜面の難易度を判定する
 */
 
-import { average } from "./calculate";
-import { NOTES_DATA } from './const';
+import { average } from "./calculate.js";
+import { NOTES_DATA } from './const.js';
 
 /* 実行 */
 export function calcDifficulty(notesArray) {
