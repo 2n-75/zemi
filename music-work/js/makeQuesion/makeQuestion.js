@@ -13,25 +13,34 @@ var result = new Promise(function (resolve) {
 	if (window.location.search) {
 		/* URLの「?」以降のパラメータを変数nに代入 */
 		LEVEL = window.location.search.substring(1, window.location.search.length);
-		console.log("level:" + LEVEL);
 	}
-}).then(function () {
-	console.log("make question");
-	for (let index = 0; index < 5; index++) {
-		makeQuestion();
-		console.log("----------");
-	}
-	console.log("end");
 });
 
+function makeQuestion() {
+	result.then(function () {
+		return setNotesData();
+	}).then(function (data) {
+		let flag = checkLevel(data)
+		if (flag) {
+			QUESTIONS.push({
+				notes: data, ansNum: Math.floor(Math.random() * data.length)
+			});
+		} else {
+			setTimeout(() => {
+				makeQuestion();
+			}, 1000);
+		}
+	});
+	console.log("end");
+}
+for (let i = 0; i < 5; i++) {
+	makeQuestion();
+}
 
 
 // 問題生成
-function makeQuestion() {
-	// 音符のデータを作る
-	const TEST_DATA = setNotesData();
-	console.log(TEST_DATA);
-
+function checkLevel(TEST_DATA) {
+	if (TEST_DATA === undefined) return false;
 	// 難易度を調べる
 	const difficulty = calcDifficulty(TEST_DATA);
 	console.log("難易度: " + difficulty);
@@ -41,11 +50,8 @@ function makeQuestion() {
 	console.log("レベル: " + _level);
 
 	if (_level != LEVEL) {
-		makeQuestion();
+		return false;
 	} else {
-		QUESTIONS.push({
-			notes: TEST_DATA, ansNum: Math.floor(Math.random() * TEST_DATA.length)
-		});
-		return;
+		return true;
 	}
 }
