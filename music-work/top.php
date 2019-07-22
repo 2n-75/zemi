@@ -31,9 +31,9 @@
 			<main>
 				<div class="content__inner">
 					<h3 class="text-center">むずかしさをえらぼう！</h3>
-					<div class="btn-square__wrapper text-center"><a href="./?level=easy" class="btn-square">かんたん</a></div>
-					<div class="btn-square__wrapper text-center"><a href="./?level=normal" class="btn-square">ふつう</a></div>
-					<div class="btn-square__wrapper text-center"><a href="./?level=hard" class="btn-square">むずかしい</a></div>
+					<div class="btn-square__wrapper text-center"><a href="./?easy" class="btn-square">かんたん</a></div>
+					<div class="btn-square__wrapper text-center"><a href="./?normal" class="btn-square">ふつう</a></div>
+					<div class="btn-square__wrapper text-center"><a href="./?hard" class="btn-square">むずかしい</a></div>
 
 				</div>
 			</main>

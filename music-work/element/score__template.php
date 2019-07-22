@@ -19,17 +19,17 @@
 			</div>
 			<!-- draggable items -->
 
-			<draggable :options="{group:'ITEMS'}" class="dropzone__inner flex-area">
+			<div :options="{group:'ITEMS'}" class="dropzone__inner flex-area">
 				<div class="box absolute" v-for="item, index in items" v-bind:key="item.no" v-bind:class="item.className" v-bind:style="{left: item.boxPos + '%' }"></div>
-			</draggable>
+			</div>
 		</section>
 
 		<!--回答エリア-->
 		<!-- draggable items -->
 		<section class="relative">
-			<draggable :options="{group:'ITEMS'}" class="flex-area">
+			<div :options="{group:'ITEMS'}" class="flex-area">
 				<div class="box box--border" v-for="item, index in items2" v-bind:key="item.no" v-bind:class="item.className" v-on:click="noteClick(item.length)"></div>
-			</draggable>
+			</div>
 			<div class="mg-10 btn-sound-frame">
 				<div class="btn-circle btn-sound absolute" onclick="playSound(2) , barActive()">
 					<span><i class="fas fa-music"></i></span>

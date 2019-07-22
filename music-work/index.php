@@ -29,7 +29,7 @@
 		<div class="container">
 			<header>
 				<div class="content__inner">
-					<a href="" class="btn-circle">
+					<a href="./top.php" class="btn-circle">
 						<span><i class="fas fa-arrow-left"></i></span>
 						<!--トップページを作る-->
 					</a>

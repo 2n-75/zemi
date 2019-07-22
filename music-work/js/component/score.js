@@ -49,7 +49,6 @@ Vue.component('score', {
 	},
 	methods: {
 		noteClick: function (len) {
-			// console.log(len);
 			const answerNote = this.items[this.ansNum];
 			const mess = document.getElementsByClassName("mess");
 			if (answerNote.length == len) {

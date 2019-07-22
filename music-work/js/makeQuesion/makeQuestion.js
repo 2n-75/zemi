@@ -5,7 +5,26 @@ import { levelDef } from "./levelDef.js";
 export const QUESTIONS = []; // コンポーネントに投げる出題データ
 
 // レベルを選ぶ
-const LEVEL = 'normal'; // あとで最初のページで選べるようにする
+let LEVEL = "normal";
+var result = new Promise(function (resolve) {
+	resolve(window.onload);
+}).then(function () {
+	console.log("get query");
+	if (window.location.search) {
+		/* URLの「?」以降のパラメータを変数nに代入 */
+		LEVEL = window.location.search.substring(1, window.location.search.length);
+		console.log("level:" + LEVEL);
+	}
+}).then(function () {
+	console.log("make question");
+	for (let index = 0; index < 5; index++) {
+		makeQuestion();
+		console.log("----------");
+	}
+	console.log("end");
+});
+
+
 
 // 問題生成
 function makeQuestion() {
@@ -29,9 +48,4 @@ function makeQuestion() {
 		});
 		return;
 	}
-}
-
-for (let index = 0; index < 5; index++) {
-	makeQuestion();
-	console.log("----------");
 }
