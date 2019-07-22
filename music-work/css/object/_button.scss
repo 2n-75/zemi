@@ -1,4 +1,5 @@
 @import "mediaquery";
+@import "../foundation/color";
 
 @mixin buttonSize() {
   $button_size: 50px;
@@ -25,9 +26,24 @@
   overflow: hidden;
   transition: 0.4s;
 
-  :hover {
+  &:hover {
     background: #668ad8;
   }
+}
+.btn-square {
+  min-width: 120px;
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  text-align: center;
+  color: $mintGreen;
+  border: solid 2px $mintGreen;
+  border-radius: 3px;
+  transition: 0.4s;
+}
+.btn-square__wrapper {
+  width: 100%;
+  padding: 10px 0;
 }
 .btn-sound-frame {
   position: absolute;

@@ -5,15 +5,11 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Document</title>
+		<title>リズム学習ワーク</title>
 
 		<!--script-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-
-		<script src="./js/object/animation.js"></script>
-		<script src="./js/object/sound.js"></script>
-		<script type="module" src="./js/makeQuesion/makeQuestion.js"></script>
 
 		<!--stylesheet-->
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
@@ -27,38 +23,25 @@
 
 	<body>
 		<div class="container">
-			<header>
+			<header style="min-height: 65px;">
 				<div class="content__inner">
-					<a href="" class="btn-circle">
-						<span><i class="fas fa-arrow-left"></i></span>
-						<!--トップページを作る-->
-					</a>
-					<div id="hintBtn" class="btn-circle f-right">
-						<span><i class="fas fa-exclamation"></i></span>
-						<!--クリックしたらモーダルでヘルプを出す-->
-					</div>
+					<h1>リズム学習ワーク</h1>
 				</div>
 			</header>
 			<main>
 				<div class="content__inner">
-					<h3>？にあてはまるおんぷはどれかな</h3>
-					<?php include "./element/score__template.php" ?>
+					<h3 class="text-center">むずかしさをえらぼう！</h3>
+					<div class="btn-square__wrapper text-center"><a href="./?level=easy" class="btn-square">かんたん</a></div>
+					<div class="btn-square__wrapper text-center"><a href="./?level=normal" class="btn-square">ふつう</a></div>
+					<div class="btn-square__wrapper text-center"><a href="./?level=hard" class="btn-square">むずかしい</a></div>
 
-					<section class="mess-area flex-area">
-						<p class="mess"></p>
-						<!--<a href="" onclick="window.location.reload()">もういちど</a>-->
-					</section>
 				</div>
 			</main>
 			<footer>
-				<div class="content__inner">
-					footer
-				</div>
+
 			</footer>
 
 			<!--scripts-->
-			<script type="module" src="./js/object/hint.js"></script>
-			<script type="module" src="./js/component/score.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
 			<script type="module" src="./js/object/swiper.js"></script>
 	</body>
