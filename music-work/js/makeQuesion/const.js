@@ -5,5 +5,3 @@ export const NOTES_DATA = [{ Dc: 1, L: 4 }, { Dc: 1, L: 3 }, { Dc: 2, L: 2 }, { 
 // レベルを分ける難易度
 export const EASY = 3;
 export const HARD = 6;
-
-export const QUESTIONS = []; // コンポーネントに投げる出題データ

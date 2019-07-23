@@ -1,4 +1,3 @@
-import { QUESTIONS } from '../makeQuesion/const.js';
 import { addImgClass } from './addClass.js';
 import { showHint } from '../object/hint.js';
 
@@ -28,11 +27,6 @@ Vue.component('score', {
 	},
 	mounted() {
 		const NOTES = this.question.notes;
-		console.log(NOTES.length);
-		for (let i = 0; i < NOTES.length; i++) {
-			const element = NOTES[i];
-			console.log(element);
-		}
 		// boxの作成
 		for (let i = 0; i < NOTES.length; i++) {
 			this.items.push({ length: NOTES[i], className: addImgClass(NOTES[i], 'note'), boxPos: 20 });
@@ -71,6 +65,13 @@ Vue.component('score', {
 new Vue({
 	el: '#score-component',
 	data: {
-		questions: QUESTIONS
+		questions: []
+	},
+	mounted() {
+		const getjson = localStorage.getItem('data');
+		let data = JSON.parse(getjson);
+
+		this.questions = data;
+		console.log(this.questions);
 	},
 });

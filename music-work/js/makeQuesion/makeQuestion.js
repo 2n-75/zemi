@@ -1,26 +1,11 @@
-import { EASY, HARD, QUESTIONS } from './const.js';
+import { EASY, HARD } from './const.js';
 import { setNotesData } from "./setNotesData.js";
 import { calcDifficulty } from "./difficultyDef.js";
 import { levelDef } from "./levelDef.js";
 
 // レベルを選ぶ
 let LEVEL = "normal";
-function makeQuestion() {
-	new Promise((resolve) => {
-		resolve(setNotesData());
-	}).then((data) => {
-		let flag = checkLevel(data);
-		if (flag) {
-			QUESTIONS.push({
-				notes: data, ansNum: Math.floor(Math.random() * data.length)
-			});
-		} else {
-			setTimeout(() => {
-				makeQuestion();
-			}, 500);
-		}
-	})
-}
+const QUESTIONS = []; // コンポーネントに投げる出題データ
 
 // 問題生成
 function checkLevel(TEST_DATA) {
@@ -39,23 +24,59 @@ function checkLevel(TEST_DATA) {
 		return false;
 	}
 }
+// 問題の配列を作る
+function loopUnit() {
+	return new Promise(resolve => {
+		resolve(setNotesData());
+	}).then((data) => {
+		let flag = checkLevel(data);
+		if (flag) {
+			QUESTIONS.push({
+				notes: data, ansNum: Math.floor(Math.random() * data.length)
+			});
+		}
+	})
+}
+
+function looper(e) {
+	return new Promise(resolve => {
+		// 永久ループにならないように限界条件を入れる (optional)
+		if (QUESTIONS.length > 5) {
+			resolve()
+			return
+		}
+		// ループ処理
+		loopUnit().then(result => {
+			if (QUESTIONS.length < 5) {
+				looper().then(() => resolve())
+			} else {
+				resolve()
+			}
+		})
+	})
+}
+
 
 // ページ遷移の前に問題を生成する
-function makeQuestions(e) {
+function btnClick(e) {
+	looper();
 	LEVEL = e.target.id;
-	console.log(LEVEL);
-	new Promise((resolve) => {
-		for (let i = 0; i < 5; i++) {
-			makeQuestion(LEVEL);
-			console.log(i);
-		}
-		resolve()
-	}).then(() => {
-		console.log(QUESTIONS);
-		window.location.href = './?' + LEVEL; // 通常の遷移
-	})
 
+	setTimeout(() => {
+		// 問題をローカルストレージに保存する
+		console.log(QUESTIONS);
+		let setjson = JSON.stringify(QUESTIONS);
+		localStorage.setItem('data', setjson);
+		window.location.href = './?' + LEVEL; // 通常の遷移
+	}, 1000);
 }
-document.getElementById("easy").addEventListener("click", makeQuestions, false);
-document.getElementById("normal").addEventListener("click", makeQuestions, false);
-document.getElementById("hard").addEventListener("click", makeQuestions, false);
+
+function addEvents(id) {
+	const btn = document.getElementById(id);
+	if (btn) {
+		btn.addEventListener("click", btnClick, false);
+	}
+}
+addEvents('easy');
+addEvents('normal');
+addEvents('hard');

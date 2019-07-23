@@ -56,9 +56,10 @@
 
 			<!--scripts-->
 			<script type="module" src="./js/object/hint.js"></script>
+			<script type="module" src="./js/component/score.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
 			<script type="module" src="./js/object/swiper.js"></script>
-			<script type="module" src="./js/component/score.js"></script>
+
 	</body>
 
 </html>
