@@ -68,7 +68,7 @@ function btnClick(e) {
 		let setjson = JSON.stringify(QUESTIONS);
 		localStorage.setItem('data', setjson);
 		window.location.href = './?' + LEVEL; // 通常の遷移
-	}, 1000);
+	}, 3000);
 }
 
 function addEvents(id) {

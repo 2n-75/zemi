@@ -31,9 +31,11 @@
 				<div class="box box--border" v-for="item, index in items2" v-bind:key="item.no" v-bind:class="item.className" v-on:click="noteClick(item.length)"></div>
 			</div>
 			<div class="mg-10 btn-sound-frame">
-				<div class="btn-circle btn-sound absolute" onclick="playSound(2) , barActive()">
+				<!--
+					<div class="btn-circle btn-sound absolute" onclick="playSound(2) , barActive()">
 					<span><i class="fas fa-music"></i></span>
 				</div>
+			-->
 			</div>
 		</section>
 		</div>
