@@ -27,7 +27,7 @@
   transition: 0.4s;
 
   &:hover {
-    background: #668ad8;
+    background: $mintGreen;
   }
 }
 .btn-square {
@@ -40,6 +40,11 @@
   border: solid 2px $mintGreen;
   border-radius: 3px;
   transition: 0.4s;
+  &:hover {
+    cursor: pointer;
+    background: $mintGreen;
+    color: #fff;
+  }
 }
 .btn-square__wrapper {
   width: 100%;
