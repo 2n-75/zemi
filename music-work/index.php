@@ -13,7 +13,6 @@
 
 		<script src="./js/object/animation.js"></script>
 		<script src="./js/object/sound.js"></script>
-		<script type="module" src="./js/makeQuesion/makeQuestion.js"></script>
 
 		<!--stylesheet-->
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
@@ -46,7 +45,6 @@
 
 					<section class="mess-area flex-area">
 						<p class="mess"></p>
-						<!--<a href="" onclick="window.location.reload()">もういちど</a>-->
 					</section>
 				</div>
 			</main>
@@ -58,9 +56,9 @@
 
 			<!--scripts-->
 			<script type="module" src="./js/object/hint.js"></script>
-			<script type="module" src="./js/component/score.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/js/swiper.min.js"></script>
 			<script type="module" src="./js/object/swiper.js"></script>
+			<script type="module" src="./js/component/score.js"></script>
 	</body>
 
 </html>
