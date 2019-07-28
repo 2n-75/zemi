@@ -1,8 +1,13 @@
 <div id="score-component" class="swiper-container">
 	<div class="swiper-wrapper">
 		<score v-for="question in questions" v-bind:key="question.id" v-bind:question="question"></score>
+		<div class="swiper-slide">
+			<div class="swiper-slide__inner">
+				<p>結果</p>
+			</div>
+		</div>
 	</div>
-	<div class="swiper-button-prev"></div>
+	<div id="prevBtn" class="swiper-button-prev"></div>
 	<div class="swiper-button-next"></div>
 </div>
 

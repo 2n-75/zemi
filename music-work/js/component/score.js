@@ -52,13 +52,27 @@ Vue.component('score', {
 			if (answerNote.length == len) {
 				// はてなボックスを消す
 				this.items[this.ansNum].className = this.items[this.ansNum].className.replace(/blackbox/g, '');
-				mess[0].innerHTML = "せいかい！";
+				mess[0].innerHTML = "せいかい！次の問題に進もう！";
+				this.recordResult(true);
 				showHint(false);
 			} else {
-				mess[0].innerHTML = "ざんねん！";
+				mess[0].innerHTML = "ざんねん！もういちど考えてみよう！";
+				this.recordResult(false);
 				showHint();
 			}
 		},
+		recordResult(correct) {
+			if (localStorage.getItem('result') != null) {
+				const resultJson = localStorage.getItem('result');
+				const resultArray = JSON.parse(resultJson);
+				resultArray.push({ notes: this.question.notes, correct: correct });
+				const setJson = JSON.stringify(resultArray);
+				localStorage.setItem('result', setJson);
+			} else {
+				const setJson = JSON.stringify([{ notes: this.question.notes, correct: correct }]);
+				localStorage.setItem('result', setJson);
+			}
+		}
 	}
 });
 
@@ -69,7 +83,7 @@ new Vue({
 	},
 	mounted() {
 		const getjson = localStorage.getItem('data');
-		let data = JSON.parse(getjson);
+		const data = JSON.parse(getjson);
 
 		this.questions = data;
 		console.log(this.questions);

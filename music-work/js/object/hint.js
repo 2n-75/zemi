@@ -1,5 +1,6 @@
 /* hint */
 export function showHint(flag = true) {
+	console.log("hint");
 	const hints = document.getElementsByClassName("hint");
 	if (flag) {
 		for (let i = 0; i < hints.length; i++) {

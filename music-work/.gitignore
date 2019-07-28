@@ -1,7 +1,9 @@
 /log
 /tmp
+/src
 *.css
 *.wav
+*.png
 *.mp3
 *.json
 # Ignore node_modules
