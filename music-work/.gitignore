@@ -1,8 +1,6 @@
 /log
 /tmp
-/src
 *.css
-*.png
 *.wav
 *.mp3
 *.json
