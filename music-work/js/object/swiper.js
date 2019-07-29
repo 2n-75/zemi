@@ -1,3 +1,5 @@
+import { showHint } from '../object/hint.js';
+
 let swiper = new Swiper('.swiper-container', {
 	navigation: {
 		nextEl: '.swiper-button-next',
@@ -5,6 +7,7 @@ let swiper = new Swiper('.swiper-container', {
 	}
 });
 
+/* つぎへともどるのぼたん */
 function prevBtnClick() {
 	console.log("prevbtn");
 }
@@ -12,6 +15,8 @@ function nextBtnClick() {
 	console.log("nextbtn");
 	const mess = document.getElementsByClassName("mess");
 	mess[0].innerHTML = "";
+	// ヒントを消す
+	showHint(false);
 }
 const prevBtn = document.getElementById('prevBtn');
 prevBtn.addEventListener('click', prevBtnClick, false);
