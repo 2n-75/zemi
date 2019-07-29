@@ -1,6 +1,8 @@
 import { addImgClass } from './addClass.js';
 import { showHint } from '../object/hint.js';
 
+let result = 0;
+
 Vue.component('score', {
 	template: '#score-template',
 	props: ['question'],
@@ -55,6 +57,10 @@ Vue.component('score', {
 				mess[0].innerHTML = "せいかい！次の問題に進もう！";
 				this.recordResult(true);
 				showHint(false);
+				result += 1;
+				console.log(result);
+				const resultText = document.getElementById('resultText');
+				resultText.innerHTML = "けっか：" + result + "問 せいかい！"
 			} else {
 				mess[0].innerHTML = "ざんねん！もういちど考えてみよう！";
 				this.recordResult(false);

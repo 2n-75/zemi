@@ -1,4 +1,4 @@
-// リズム譜, タイミングバーのstyle
+/* コンポーネント */
 
 @import "mediaquery";
 @import "../foundation/color";
@@ -45,5 +45,12 @@
   .box--pos3,
   .box--pos4 {
     position: absolute;
+  }
+}
+.mess-area {
+  padding: 1% 10%;
+  .mess {
+    font-weight: bold;
+    color: $orange;
   }
 }

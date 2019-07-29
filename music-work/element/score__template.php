@@ -2,8 +2,11 @@
 	<div class="swiper-wrapper">
 		<score v-for="question in questions" v-bind:key="question.id" v-bind:question="question"></score>
 		<div class="swiper-slide">
-			<div class="swiper-slide__inner">
-				<p>結果</p>
+			<div class="swiper-slide__inner text-center">
+				<p id="resultText">結果</p>
+				<div class="btn-square__wrapper text-center">
+					<a href="./top.php" class="btn-square">もどる</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -22,7 +25,6 @@
 				<p id="timing-bar" class="timing-bar absolute">|</p>
 				<div class="box absolute hint hidden" v-for="item, index in hints" v-bind:key="item.no" v-bind:class="item.className" v-bind:style="{left: item.boxPos + '%' }"></div>
 			</div>
-			<!-- draggable items -->
 
 			<div :options="{group:'ITEMS'}" class="dropzone__inner flex-area">
 				<div class="box absolute" v-for="item, index in items" v-bind:key="item.no" v-bind:class="item.className" v-bind:style="{left: item.boxPos + '%' }"></div>
@@ -30,7 +32,7 @@
 		</section>
 
 		<!--回答エリア-->
-		<!-- draggable items -->
+
 		<section class="relative">
 			<div :options="{group:'ITEMS'}" class="flex-area">
 				<div class="box box--border" v-for="item, index in items2" v-bind:key="item.no" v-bind:class="item.className" v-on:click="noteClick(item.length)"></div>
