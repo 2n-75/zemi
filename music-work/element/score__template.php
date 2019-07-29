@@ -11,7 +11,7 @@
 		</div>
 	</div>
 	<div id="prevBtn" class="swiper-button-prev"></div>
-	<div class="swiper-button-next"></div>
+	<div id="nextBtn" class="swiper-button-next"></div>
 </div>
 
 <!-- vue template -->
