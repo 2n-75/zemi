@@ -3,9 +3,12 @@
 		<score v-for="question in questions" v-bind:key="question.id" v-bind:question="question"></score>
 		<div class="swiper-slide">
 			<div class="swiper-slide__inner text-center">
-				<p id="resultText">結果</p>
-				<div class="btn-square__wrapper text-center">
-					<a href="./top.php" class="btn-square">もどる</a>
+				<div class="resultText__wrapper">
+					<p>おつかれさまでした！</p>
+					<p id="resultText">結果</p>
+					<div class="btn-square__wrapper text-center">
+						<a href="./top.php" class="btn-square">もどる</a>
+					</div>
 				</div>
 			</div>
 		</div>
