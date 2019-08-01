@@ -2,8 +2,8 @@ import { addImgClass } from './addClass.js';
 import { showHint } from '../object/hint.js';
 
 let result = 0;
-
-Vue.component('score', {
+export let count = 0;
+export const scoreComponent = Vue.component('score', {
 	template: '#score-template',
 	props: ['question'],
 	data: function () {
@@ -24,7 +24,7 @@ Vue.component('score', {
 			],
 			leftEnd: 15,
 			rightEnd: 90,
-			ansNum: this.question.ansNum
+			ansNum: this.question.ansNum,
 		};
 	},
 	mounted() {
@@ -50,21 +50,25 @@ Vue.component('score', {
 	methods: {
 		noteClick: function (len) {
 			const answerNote = this.items[this.ansNum];
-			const mess = document.getElementsByClassName("mess");
 			if (answerNote.length == len) {
+				count += 1;
 				// はてなボックスを消す
 				this.items[this.ansNum].className = this.items[this.ansNum].className.replace(/blackbox/g, '');
-				mess[0].innerHTML = "せいかい！次の問題に進もう！";
+				this.changeMess(true);
 				this.recordResult(true);
 				showHint(false);
-				result += 1;
-				console.log(result);
-				const resultText = document.getElementById('resultText');
-				resultText.innerHTML = "けっか：" + result + "問 せいかい！"
 			} else {
-				mess[0].innerHTML = "ざんねん！もういちど考えてみよう！";
+				this.changeMess(false);
 				this.recordResult(false);
 				showHint();
+			}
+		},
+		changeMess(correct) {
+			const mess = document.getElementsByClassName("mess");
+			if (correct) {
+				mess[0].innerHTML = "せいかい！次の問題に進もう！";
+			} else {
+				mess[0].innerHTML = "ざんねん！もういちど考えてみよう！";
 			}
 		},
 		recordResult(correct) {
