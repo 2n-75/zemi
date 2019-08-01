@@ -1,5 +1,4 @@
 import { showHint } from '../object/hint.js';
-import { showResult } from '../object/result.js';
 import { count } from '../component/score.js';
 
 const swiper = new Swiper('.swiper-container', {

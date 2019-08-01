@@ -50,7 +50,6 @@
 			</main>
 			<footer>
 				<div class="content__inner">
-					footer
 				</div>
 			</footer>
 
