@@ -1,5 +1,6 @@
 import { addImgClass } from './addClass.js';
 import { showHint } from '../object/hint.js';
+import { outResults } from '../object/downloadCSV.js/index.js';
 
 let result = 0;
 export let count = 0;
@@ -28,6 +29,7 @@ export const scoreComponent = Vue.component('score', {
 		};
 	},
 	mounted() {
+		outResults();
 		const NOTES = this.question.notes;
 		// boxの作成
 		for (let i = 0; i < NOTES.length; i++) {
@@ -72,14 +74,16 @@ export const scoreComponent = Vue.component('score', {
 			}
 		},
 		recordResult(correct) {
+			const level = window.location.search.replace('?', '');
 			if (localStorage.getItem('result') != null) {
 				const resultJson = localStorage.getItem('result');
 				const resultArray = JSON.parse(resultJson);
-				resultArray.push({ notes: this.question.notes, correct: correct });
+
+				resultArray.push({ level: level, notes: this.question.notes, correct: correct });
 				const setJson = JSON.stringify(resultArray);
 				localStorage.setItem('result', setJson);
 			} else {
-				const setJson = JSON.stringify([{ notes: this.question.notes, correct: correct }]);
+				const setJson = JSON.stringify([{ level: level, notes: this.question.notes, correct: correct }]);
 				localStorage.setItem('result', setJson);
 			}
 		}

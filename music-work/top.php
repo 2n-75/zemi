@@ -12,7 +12,9 @@
 		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 		<!--scripts-->
 		<script type="module" src="./js/makeQuesion/makeQuestion.js"></script>
-
+		<!-- ローカルストレージをcsvに書き出し
+		<script type="module" src="./js/object/downloadCSV.js"></script>
+		-->
 		<!--stylesheet-->
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
