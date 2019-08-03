@@ -40,7 +40,10 @@
 			</header>
 			<main>
 				<div class="content__inner">
-					<h3>？にあてはまるおんぷはどれかな</h3>
+					<h3>
+						？にあてはまるおんぷはどれかな
+						<p id="headingHint" class="hidden">りんごが全部で4つ分になるようにえらぼう</p>
+					</h3>
 					<?php include "./element/score__template.php" ?>
 
 					<section class="mess-area flex-area">

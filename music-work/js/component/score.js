@@ -1,6 +1,5 @@
 import { addImgClass } from './addClass.js';
 import { showHint } from '../object/hint.js';
-import { outResults } from '../object/downloadCSV.js/index.js';
 
 let result = 0;
 export let count = 0;
@@ -29,7 +28,6 @@ export const scoreComponent = Vue.component('score', {
 		};
 	},
 	mounted() {
-		outResults();
 		const NOTES = this.question.notes;
 		// boxの作成
 		for (let i = 0; i < NOTES.length; i++) {

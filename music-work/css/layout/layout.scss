@@ -20,6 +20,10 @@ main {
     color: #555;
     font-size: 1.2em;
     padding: 1em 0.5em;
+    #headingHint {
+      margin: 10px 0;
+      color: $orange;
+    }
     @include mq-down(md) {
       padding: 0.5em 0;
       font-size: 1em;
