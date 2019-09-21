@@ -1,5 +1,6 @@
 import { addImgClass } from './addClass.js';
 import { showHint } from '../object/hint.js';
+import { showReview } from '../object/review.js';
 
 let result = 0;
 export let count = 0;
@@ -25,6 +26,7 @@ export const scoreComponent = Vue.component('score', {
 			leftEnd: 15,
 			rightEnd: 90,
 			ansNum: this.question.ansNum,
+			correct: false
 		};
 	},
 	mounted() {
@@ -54,14 +56,15 @@ export const scoreComponent = Vue.component('score', {
 				count += 1;
 				// はてなボックスを消す
 				this.items[this.ansNum].className = this.items[this.ansNum].className.replace(/blackbox/g, '');
-				this.changeMess(true);
-				this.recordResult(true);
+				this.correct = true;
 				showHint(false);
 			} else {
-				this.changeMess(false);
-				this.recordResult(false);
+				this.correct = false;
 				showHint();
 			}
+			this.changeMess(this.correct);
+			// アンケートを表示する
+			showReview(true);
 		},
 		changeMess(correct) {
 			const mess = document.getElementsByClassName("mess");
@@ -71,17 +74,26 @@ export const scoreComponent = Vue.component('score', {
 				mess[0].innerHTML = "ざんねん！もういちど考えてみよう！";
 			}
 		},
-		recordResult(correct) {
+		btnClick(e) {
+			const review = e.target.id;
+			this.recordResult(this.correct, review);
+		},
+		recordResult(correct, review) {
 			const level = window.location.search.replace('?', '');
 			if (localStorage.getItem('result') != null) {
 				const resultJson = localStorage.getItem('result');
 				const resultArray = JSON.parse(resultJson);
-
-				resultArray.push({ level: level, notes: this.question.notes, correct: correct });
+				console.log(resultArray);
+				const newData = { level: level, notes: this.question.notes, correct: correct, review: review }
+				// 直前のものと同じ結果だったら記録しない
+				if (newData === resultArray.slice(-1)[0]) {
+					return
+				}
+				resultArray.push(newData);
 				const setJson = JSON.stringify(resultArray);
 				localStorage.setItem('result', setJson);
 			} else {
-				const setJson = JSON.stringify([{ level: level, notes: this.question.notes, correct: correct }]);
+				const setJson = JSON.stringify([{ level: level, notes: this.question.notes, correct: correct, review: review }]);
 				localStorage.setItem('result', setJson);
 			}
 		}

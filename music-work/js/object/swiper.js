@@ -1,5 +1,6 @@
 import { showHint } from '../object/hint.js';
 import { count } from '../component/score.js';
+import { showReview } from '../object/review.js'
 
 const swiper = new Swiper('.swiper-container', {
 	navigation: {
@@ -19,6 +20,8 @@ const swiper = new Swiper('.swiper-container', {
 				mess[0].innerHTML = "";
 				// ヒントを消す
 				showHint(false);
+				// アンケートを消す
+				showReview(false);
 			}
 		},
 	}
