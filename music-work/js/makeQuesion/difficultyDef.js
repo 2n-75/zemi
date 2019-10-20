@@ -12,7 +12,10 @@ export function calcDifficulty(notesArray) {
 	const { Dp, aveL } = calc_average(notesArray);
 	console.log("一番多く使われている音符の平均難易度は" + Dp + " 平均音価は" + aveL);
 	const { A, S } = calc_sumValue(aveL, Dp, notesArray);
-	return Math.round(Dp + A - S);
+	const hasOffBeat = checkOffBeat(notesArray) | false;
+	console.log("hasOffBeat:" + hasOffBeat);
+	const diffculty = hasOffBeat ? Dp + A - S : Dp + A - S + 2;
+	return Math.round(diffculty);
 }
 
 /* 便利関数 */
@@ -102,4 +105,18 @@ function calc_sumValue(aveL, Dp, notesArray) {
 		S += tmp * Smax;
 	}
 	return { A, S };
+}
+
+/* 裏拍が含まれるかをチェックする */
+function checkOffBeat(notesArray) {
+	let hasOffBeat = false;
+	let lenSum = 0;
+	for (let i = 0; i < notesArray.length; i++) {
+		lenSum = lenSum + notesArray[i];
+		if (!Number.isInteger(lenSum)) {
+			hasOffBeat = true;
+			return hasOffBeat;
+		}
+	}
+	return hasOffBeat;
 }

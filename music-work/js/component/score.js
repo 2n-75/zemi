@@ -23,25 +23,29 @@ export const scoreComponent = Vue.component('score', {
 				{ no: 4, name: '四分音符', length: 1, className: 'note--quater' },
 				{ no: 5, name: '八分音符', length: 0.5, className: 'note--eighth' }
 			],
-			leftEnd: 15,
-			rightEnd: 90,
+			leftEnd: 10,
+			rightEnd: 86,
 			ansNum: this.question.ansNum,
 			correct: false
 		};
 	},
 	mounted() {
 		const NOTES = this.question.notes;
+		let position = this.leftEnd;
 		// boxの作成
 		for (let i = 0; i < NOTES.length; i++) {
-			this.items.push({ length: NOTES[i], className: addImgClass(NOTES[i], 'note'), boxPos: 20 });
-			this.hints.push({ length: NOTES[i], className: addImgClass(NOTES[i], 'hint'), boxPos: 20 });
+			this.items.push({ length: NOTES[i], className: addImgClass(NOTES[i], 'note'), boxPos: 10 });
+			this.hints.push({ length: NOTES[i], className: addImgClass(NOTES[i], 'hint'), boxPos: 10 });
 		}
 		// 位置のクラス付与
 		for (let i = 0; i < this.items.length; i++) {
-			const posRange = this.rightEnd - this.leftEnd;
-			const interval = posRange / NOTES.length;
-			this.items[i].boxPos = this.leftEnd + interval * i;
-			this.hints[i].boxPos = this.leftEnd + interval * i;
+			if (i > 0) {
+				const interval = (this.items[i - 1].length * 2) * 9.5
+				position += interval;
+				this.items[i].boxPos = position;
+				this.hints[i].boxPos = position;
+			}
+
 
 			// ハテナボックスと被るところは隠す
 			if (i == this.ansNum) {

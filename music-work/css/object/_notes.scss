@@ -36,19 +36,19 @@ $beat4: 74%;
 // 外枠の箱
 .box--pos1 {
   @extend .box;
-  @include box__postion($beat1);
+  /*@include box__postion($beat1);*/
 }
 .box--pos2 {
   @extend .box;
-  @include box__postion($beat2);
+  /*@include box__postion($beat2);*/
 }
 .box--pos3 {
   @extend .box;
-  @include box__postion($beat3);
+  /* @include box__postion($beat3);*/
 }
 .box--pos4 {
   @extend .box;
-  @include box__postion($beat4);
+  /* @include box__postion($beat4);*/
 }
 
 // 画像
@@ -56,26 +56,33 @@ $beat4: 74%;
   &--whole {
     // 画像用意する
     background-image: url(../../img/notes/note_whole.png);
+    width: 100%;
   }
   &--halfDot {
     // 画像用意する
     background-image: url(../../img/notes/note_halfDot.png);
+    width: 75%;
   }
   &--half {
     background-image: url(../../img/notes/note_half.png);
+    width: 50%;
   }
   &--quaterDot {
     background-image: url(../../img/notes/note_quaterDot.png);
+    width: 37%;
   }
   &--quater {
     background-image: url(../../img/notes/note_quater.png);
+    width: 25%;
   }
   &--eighth {
     background-image: url(../../img/notes/note_eighth.png);
+    width: 12%;
   }
 }
 
 .blackbox {
+  background-color: #fff;
   background-image: url(../../img/question.png);
 }
 .hint {
@@ -83,26 +90,32 @@ $beat4: 74%;
   z-index: 1;
   &--whole {
     background-image: url(../../img/hint/hint-whole.png);
+    width: 100%;
     opacity: 0.8;
   }
   &--halfDot {
     background-image: url(../../img/hint/hint-halfDot.png);
+    width: 75%;
     opacity: 0.8;
   }
   &--half {
     background-image: url(../../img/hint/hint-half.png);
+    width: 50%;
     opacity: 0.8;
   }
   &--quaterDot {
     background-image: url(../../img/hint/hint-quaterDot.png);
+    width: 37%;
     opacity: 0.8;
   }
   &--quater {
     background-image: url(../../img/hint/hint-quater.png);
+    width: 25%;
     opacity: 0.8;
   }
   &--eighth {
     background-image: url(../../img/hint/hint-eighth.png);
+    width: 13%;
     opacity: 0.8;
   }
 }
