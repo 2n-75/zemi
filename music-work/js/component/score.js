@@ -24,9 +24,10 @@ export const scoreComponent = Vue.component('score', {
 				{ no: 5, name: '八分音符', length: 0.5, className: 'note--eighth' }
 			],
 			leftEnd: 10,
-			rightEnd: 86,
+			rightEnd: 88,
 			ansNum: this.question.ansNum,
-			correct: false
+			correct: false,
+			sumUntilLastNote: 0
 		};
 	},
 	mounted() {
@@ -34,13 +35,13 @@ export const scoreComponent = Vue.component('score', {
 		let position = this.leftEnd;
 		// boxの作成
 		for (let i = 0; i < NOTES.length; i++) {
-			this.items.push({ length: NOTES[i], className: addImgClass(NOTES[i], 'note'), boxPos: 10 });
-			this.hints.push({ length: NOTES[i], className: addImgClass(NOTES[i], 'hint'), boxPos: 10 });
+			this.items.push({ length: NOTES[i], className: addImgClass(NOTES[i], 'note', false), boxPos: this.leftEnd });
+			this.hints.push({ length: NOTES[i], className: addImgClass(NOTES[i], 'hint', this.convertImage(i)), boxPos: this.leftEnd });
 		}
 		// 位置のクラス付与
 		for (let i = 0; i < this.items.length; i++) {
 			if (i > 0) {
-				const interval = (this.items[i - 1].length * 2) * 9.5
+				const interval = (this.items[i - 1].length * 2) * 10;
 				position += interval;
 				this.items[i].boxPos = position;
 				this.hints[i].boxPos = position;
@@ -54,7 +55,8 @@ export const scoreComponent = Vue.component('score', {
 		}
 	},
 	methods: {
-		noteClick: function (len) {
+		noteClick: function (e, len) {
+			e.stopPropagation();
 			const answerNote = this.items[this.ansNum];
 			if (answerNote.length == len) {
 				count += 1;
@@ -82,6 +84,7 @@ export const scoreComponent = Vue.component('score', {
 			const review = e.target.id;
 			this.recordResult(this.correct, review);
 		},
+		/* 結果を記録する */
 		recordResult(correct, review) {
 			const level = window.location.search.replace('?', '');
 			if (localStorage.getItem('result') != null) {
@@ -100,6 +103,12 @@ export const scoreComponent = Vue.component('score', {
 				const setJson = JSON.stringify([{ level: level, notes: this.question.notes, correct: correct, review: review }]);
 				localStorage.setItem('result', setJson);
 			}
+		},
+		/* 裏拍の時はヒントの画像を反転させる */
+		convertImage(index) {
+			if (index == 0) return false
+			this.sumUntilLastNote += this.question.notes[index - 1];
+			return !Number.isInteger(this.sumUntilLastNote);
 		}
 	}
 });

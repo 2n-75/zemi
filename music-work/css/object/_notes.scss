@@ -56,28 +56,28 @@ $beat4: 74%;
   &--whole {
     // 画像用意する
     background-image: url(../../img/notes/note_whole.png);
-    width: 100%;
+    width: 80%;
   }
   &--halfDot {
     // 画像用意する
     background-image: url(../../img/notes/note_halfDot.png);
-    width: 75%;
+    width: 60%;
   }
   &--half {
     background-image: url(../../img/notes/note_half.png);
-    width: 50%;
+    width: 40%;
   }
   &--quaterDot {
     background-image: url(../../img/notes/note_quaterDot.png);
-    width: 37%;
+    width: 30%;
   }
   &--quater {
     background-image: url(../../img/notes/note_quater.png);
-    width: 25%;
+    width: 20%;
   }
   &--eighth {
     background-image: url(../../img/notes/note_eighth.png);
-    width: 12%;
+    width: 10%;
   }
 }
 
@@ -90,32 +90,35 @@ $beat4: 74%;
   z-index: 1;
   &--whole {
     background-image: url(../../img/hint/hint-whole.png);
-    width: 100%;
+    width: 80%;
     opacity: 0.8;
   }
   &--halfDot {
     background-image: url(../../img/hint/hint-halfDot.png);
-    width: 75%;
+    width: 60%;
     opacity: 0.8;
   }
   &--half {
     background-image: url(../../img/hint/hint-half.png);
-    width: 50%;
+    width: 40%;
     opacity: 0.8;
   }
   &--quaterDot {
     background-image: url(../../img/hint/hint-quaterDot.png);
-    width: 37%;
+    width: 30%;
     opacity: 0.8;
   }
   &--quater {
     background-image: url(../../img/hint/hint-quater.png);
-    width: 25%;
+    width: 20%;
     opacity: 0.8;
   }
   &--eighth {
     background-image: url(../../img/hint/hint-eighth.png);
-    width: 13%;
+    width: 10%;
     opacity: 0.8;
+  }
+  &--convert {
+    transform: scale(-1, 1);
   }
 }

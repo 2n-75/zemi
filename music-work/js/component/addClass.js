@@ -1,5 +1,5 @@
 /* データからCSSのクラスを付与する */
-export function addImgClass(len, mode) {
+export function addImgClass(len, mode, convert) {
 	if (mode == 'note') {
 		switch (len) {
 			case 4:
@@ -18,21 +18,29 @@ export function addImgClass(len, mode) {
 				break;
 		}
 	} else if (mode == 'hint') {
+		let className = convert ? "hint--convert " : "";
 		switch (len) {
 			case 4:
-				return "hint--whole ";
+				className += "hint--whole";
+				return className;
 			case 3:
-				return "hint--halfDot ";
+				className += "hint--halfDot";
+				return className;
 			case 2:
-				return "hint--half ";
+				className += "hint--half";
+				return className;
 			case 1.5:
-				return "hint--quaterDot ";
+				className += "hint--quaterDot";
+				return className;
 			case 1:
-				return "hint--quater ";
+				className += "hint--quater";
+				return className;
 			case 0.5:
-				return "hint--eighth ";
+				className += "hint--eighth";
+				return className;
 			default:
 				break;
 		}
 	}
+	return className;
 }
