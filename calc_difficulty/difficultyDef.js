@@ -6,7 +6,7 @@ import { average } from "./calculate.js";
 import { NOTES_DATA } from './const.js';
 
 /* 実行 */
-export function calcDifficulty(notesArray) {
+export const calcDifficulty = (notesArray) => {
 	console.log("入力データ:" + notesArray);
 	// もっともよく使われている音符の平均難易度と平均音価
 	const { Dp, aveL } = calc_average(notesArray);
@@ -20,7 +20,7 @@ export function calcDifficulty(notesArray) {
 
 /* 便利関数 */
 // 音符の長さから難易度を返す
-function L_to_Dc(l) {
+const L_to_Dc = (l) => {
 	let dc = 0;
 	for (let i = 0; i < NOTES_DATA.length; i++) {
 		if (NOTES_DATA[i].L == l) {
@@ -32,24 +32,24 @@ function L_to_Dc(l) {
 
 /* こっからただの計算 */
 // もっともよく使われている音符の平均音価と平均難易度を求める
-function calc_average(_data) {
+const calc_average = (_data) => {
 	const countsList = appearanceCounter(_data);
-	// countsList.map(function (c) { return c.count; }) でcountsListからcountの列だけ取り出した配列ができる
-	const maxCount = Math.max.apply(null, countsList.map(function (x) {
+	// countsList.map( (c) => { return c.count; }) でcountsListからcountの列だけ取り出した配列ができる
+	const maxCount = Math.max.apply(null, countsList.map((x) => {
 		return x.count;
 	}));
 	// 最頻値のリスト
-	const L_mode = countsList.filter(x => x.count === maxCount).map(function (x) {
+	const L_mode = countsList.filter(x => x.count === maxCount).map((x) => {
 		return x.L;
 	});
-	const Dc_mode = countsList.filter(x => x.count === maxCount).map(function (x) {
+	const Dc_mode = countsList.filter(x => x.count === maxCount).map((x) => {
 		return x.Dc;
 	});
 	return { Dp: average(Dc_mode), aveL: average(L_mode) };
 }
 
 // 音符の難易度と出現回数のjsonを返す
-function appearanceCounter(_data) {
+const appearanceCounter = (_data) => {
 	let counts = [];
 	for (let i = 0; i < NOTES_DATA.length; i++) {
 		counts.push({ Dc: NOTES_DATA[i].Dc, L: NOTES_DATA[i].L, count: 0 });
@@ -65,7 +65,7 @@ function appearanceCounter(_data) {
 	return counts;
 }
 // 合計加算値A, 合計減算値Sを求める
-function calc_sumValue(aveL, Dp, notesArray) {
+const calc_sumValue = (aveL, Dp, notesArray) => {
 	let notesNum = 0;
 	// 長さがaveL(頻出音価)より短い音符の総数をNs、長い音符の総数をNlとする
 	let Dsn = [];
@@ -81,10 +81,10 @@ function calc_sumValue(aveL, Dp, notesArray) {
 		}
 	}
 	// Dsn, Dlnの重複をなくす(あったほうがいいのか？)
-	Dsn = Dsn.filter(function (x, i, self) {
+	Dsn = Dsn.filter((x, i, self) => {
 		return self.indexOf(x) === i;
 	});
-	Dln = Dln.filter(function (x, i, self) {
+	Dln = Dln.filter((x, i, self) => {
 		return self.indexOf(x) === i;
 	});
 
@@ -108,7 +108,7 @@ function calc_sumValue(aveL, Dp, notesArray) {
 }
 
 /* 裏拍が含まれるかをチェックする */
-function checkOffBeat(notesArray) {
+const checkOffBeat = (notesArray) => {
 	let hasOffBeat = false;
 	let lenSum = 0;
 	for (let i = 0; i < notesArray.length; i++) {
@@ -119,4 +119,12 @@ function checkOffBeat(notesArray) {
 		}
 	}
 	return hasOffBeat;
+}
+/* 一つの楽譜に含まれる音符or休符の種類 */
+const paramsNotesKind = () => {
+
+}
+/* 休符がある場合，難易度をあげる */
+const paramRest = () => {
+
 }
