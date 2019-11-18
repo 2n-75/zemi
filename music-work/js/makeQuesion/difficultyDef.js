@@ -12,9 +12,10 @@ export function calcDifficulty(notesArray) {
 	const { Dp, aveL } = calc_average(notesArray);
 	console.log("一番多く使われている音符の平均難易度は" + Dp + " 平均音価は" + aveL);
 	const { A, S } = calc_sumValue(aveL, Dp, notesArray);
-	const hasOffBeat = checkOffBeat(notesArray) | false;
-	console.log("hasOffBeat:" + hasOffBeat);
-	const diffculty = hasOffBeat ? Dp + A - S : Dp + A - S + 2;
+	const OffBeat = checkOffBeat(notesArray) | false;
+	console.log("OffBeat:" + hasOffBeat);
+	//const diffculty = hasOffBeat ? Dp + A - S : Dp + A - S + 2;
+	const diffculty = Dp + A - S;
 	return Math.round(diffculty);
 }
 
@@ -107,16 +108,31 @@ function calc_sumValue(aveL, Dp, notesArray) {
 	return { A, S };
 }
 
-/* 裏拍が含まれるかをチェックする */
-function checkOffBeat(notesArray) {
-	let hasOffBeat = false;
+/* 裏拍が含まれる拍を返す */
+const checkOffBeat = (notesArray) => {
+	/**
+	 * 裏拍の条件
+	 * 1 一つ前までの音符の長さの合計が整数でない
+	 * 2 一つ前と自分の長さを足すと整数でない
+	 */
+	const offBeatArray = [];
 	let lenSum = 0;
-	for (let i = 0; i < notesArray.length; i++) {
-		lenSum = lenSum + notesArray[i];
-		if (!Number.isInteger(lenSum)) {
-			hasOffBeat = true;
-			return hasOffBeat;
+	offBeatArray[0] = 0;
+	for (let i = 1; i < notesArray.length; i++) {
+		lenSum = lenSum + notesArray[i - 1];
+		if (!Number.isInteger(lenSum) && !Number.isInteger(notesArray[i - 1] + notesArray[i])) {
+			offBeatArray.push(1);
+		} else {
+			offBeatArray.push(0);
 		}
 	}
-	return hasOffBeat;
+	console.log(offBeatArray);
+	return offBeatArray;
+}
+
+/* 一つの楽譜に含まれる音符or休符の種類 */
+const paramsNotesKind = (array) => {
+	return array.filter(function (x, i, self) {
+		return self.indexOf(x) === i;
+	});
 }
