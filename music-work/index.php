@@ -30,23 +30,21 @@
 	<body>
 		<div class="container">
 			<header>
-				<div class="content__inner">
+				<div class="content__inner flex-area">
 					<a href="./top.php" class="btn-circle">
 						<span><i class="fas fa-arrow-left"></i></span>
-						<!--トップページを作る-->
 					</a>
+					<h3>
+						？にあてはまるおんぷはどれかな
+						<p id="headingHint" class="hidden">りんごが全部で4つ分になるようにえらぼう</p>
+					</h3>
 					<div id="hintBtn" class="btn-circle f-right">
 						<span><i class="fas fa-exclamation"></i></span>
-						<!--クリックしたらモーダルでヘルプを出す-->
 					</div>
 				</div>
 			</header>
 			<main>
 				<div class="content__inner">
-					<h3>
-						？にあてはまるおんぷはどれかな
-						<p id="headingHint" class="hidden">りんごが全部で4つ分になるようにえらぼう</p>
-					</h3>
 					<?php include "./element/score__template.php" ?>
 
 					<section class="mess-area flex-area">

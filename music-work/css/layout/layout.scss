@@ -15,11 +15,36 @@ main {
       width: 90%;
     }
   }
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+  background: #fff;
+  margin-top: -10px;
+  .content__inner {
+    width: 100%;
+    min-height: 65px;
+    padding: 10px 20px;
+    border-bottom: 2px solid #ddd;
+    align-items: center;
+  }
+  h1 {
+    font-size: 1.5em;
+    color: $orange;
+    text-align: center;
+    line-height: 40px;
+  }
   h3 {
-    margin: 0 10%;
+    width: 98%; /* IE8以下とAndroid4.3以下用フォールバック */
+    width: -webkit-calc(100% - 100px);
+    width: calc(100% - 100px);
+    margin: 0 20px;
     color: #555;
     font-size: 1.2em;
     padding: 1em 0.5em;
+    text-align: center;
     #headingHint {
       margin: 10px 0;
       color: $orange;
@@ -28,21 +53,6 @@ main {
       padding: 0.5em 0;
       font-size: 1em;
     }
-  }
-}
-
-header {
-  .content__inner {
-    width: 100%;
-    min-height: 65px;
-    padding: 10px 20px;
-    border-bottom: 2px solid #ddd;
-  }
-  h1 {
-    font-size: 1.5em;
-    color: $orange;
-    text-align: center;
-    line-height: 40px;
   }
 }
 

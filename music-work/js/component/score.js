@@ -109,6 +109,13 @@ export const scoreComponent = Vue.component('score', {
 			if (index == 0) return false
 			this.sumUntilLastNote += this.question.notes[index - 1];
 			return !Number.isInteger(this.sumUntilLastNote);
+		},
+		/* drag&drop */
+		onStart: () => {
+			console.log("on start");
+		},
+		onEnd: () => {
+			console.log("on end");
 		}
 	}
 });

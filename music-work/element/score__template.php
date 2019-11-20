@@ -37,7 +37,7 @@
 			<!--回答エリア-->
 
 			<section class="relative">
-					<draggable tag="ul" :options="{group:'ITEMS'}">
+					<draggable @start="onStart" @end="onEnd" tag="ul" :options="{group:'ITEMS'}">
 						<li class="box box--border" v-for="item, index in items2" v-bind:key="item.no" v-bind:class="item.className" v-on:click="noteClick(item.length)"></li>
 					</draggable>
 				<div class="mg-10 btn-sound-frame">
