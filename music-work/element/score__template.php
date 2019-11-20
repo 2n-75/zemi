@@ -16,7 +16,7 @@
 
 <!-- vue template -->
 <script type="text/x-template" id="score-template">
-	<div class="score" v-bind:class="items.no">
+	<div class="score">
 			<!--出題エリア-->
 			<section id="dropzone" class="dropzone">
 				<div>

@@ -57,20 +57,21 @@ export const scoreComponent = Vue.component('score', {
 	},
 	methods: {
 		noteSelected(e) {
-			console.log(e);
-			console.log(e.item.className);
-			console.log(this.items2[0].className);
-
+			// ドラッグされた要素
+			const selected = this.items2.find(item => {
+				return e.item.className.includes(item.className) & item.length
+			})
 			const answerNote = this.items[this.ansNum];
-			console.log(this);
-			if (answerNote.length == len) {
+			if (answerNote.length == selected.length) {
 				count += 1;
 				// はてなボックスを消す
 				this.items[this.ansNum].className = this.items[this.ansNum].className.replace(/blackbox/g, '');
 				this.correct = true;
+				console.log("せいかい");
 				showHint(false);
 			} else {
 				this.correct = false;
+				console.log("ちがう");
 				showHint();
 			}
 			this.changeMess(this.correct);
@@ -99,7 +100,6 @@ export const scoreComponent = Vue.component('score', {
 			if (localStorage.getItem('result') != null) {
 				const resultJson = localStorage.getItem('result');
 				const resultArray = JSON.parse(resultJson);
-				console.log(resultArray);
 				const newData = { level: level, notes: this.question.notes, correct: correct, review: review }
 				// 直前のものと同じ結果だったら記録しない
 				if (newData === resultArray.slice(-1)[0]) {
