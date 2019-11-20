@@ -58,10 +58,12 @@ export const scoreComponent = Vue.component('score', {
 	methods: {
 		noteSelected(e) {
 			// ドラッグされた要素
-			const selected = this.items2.find(item => {
-				return e.item.className.includes(item.className) & item.length
-			})
+			const selected = this.items2.find(item =>
+				e.item.className.includes(item.className)
+			)
+			console.log(selected.name);
 			const answerNote = this.items[this.ansNum];
+			console.log(answerNote.length);
 			if (answerNote.length == selected.length) {
 				count += 1;
 				// はてなボックスを消す
