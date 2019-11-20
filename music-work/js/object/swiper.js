@@ -3,6 +3,7 @@ import { count } from '../component/score.js';
 import { showReview } from '../object/review.js'
 
 const swiper = new Swiper('.swiper-container', {
+	draggable: ture,
 	navigation: {
 		nextEl: '.swiper-button-next',
 		prevEl: '.swiper-button-prev'
