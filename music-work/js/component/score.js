@@ -7,7 +7,7 @@ export let count = 0;
 export const scoreComponent = Vue.component('score', {
 	template: '#score-template',
 	props: ['question'],
-	data: function () {
+	data() {
 		return {
 			items: [
 				// 出題内容によって変化する. mounted()で定義
@@ -27,7 +27,8 @@ export const scoreComponent = Vue.component('score', {
 			rightEnd: 88,
 			ansNum: this.question.ansNum,
 			correct: false,
-			sumUntilLastNote: 0
+			sumUntilLastNote: 0,
+			currentNo: 0
 		};
 	},
 	mounted() {
@@ -55,9 +56,13 @@ export const scoreComponent = Vue.component('score', {
 		}
 	},
 	methods: {
-		noteClick: function (e, len) {
-			e.stopPropagation();
+		noteSelected(e) {
+			console.log(e);
+			console.log(e.item.className);
+			console.log(this.items2[0].className);
+
 			const answerNote = this.items[this.ansNum];
+			console.log(this);
 			if (answerNote.length == len) {
 				count += 1;
 				// はてなボックスを消す
@@ -69,8 +74,11 @@ export const scoreComponent = Vue.component('score', {
 				showHint();
 			}
 			this.changeMess(this.correct);
+
+			const review = '';
+			this.recordResult(this.correct, review);
 			// アンケートを表示する
-			showReview(true);
+			//showReview(true);
 		},
 		changeMess(correct) {
 			const mess = document.getElementsByClassName("mess");
@@ -80,6 +88,7 @@ export const scoreComponent = Vue.component('score', {
 				mess[0].innerHTML = "ざんねん！もういちど考えてみよう！";
 			}
 		},
+		/* アンケートに回答した時 */
 		btnClick(e) {
 			const review = e.target.id;
 			this.recordResult(this.correct, review);
@@ -110,20 +119,18 @@ export const scoreComponent = Vue.component('score', {
 			this.sumUntilLastNote += this.question.notes[index - 1];
 			return !Number.isInteger(this.sumUntilLastNote);
 		},
-		/* drag&drop */
-		onStart: () => {
-			console.log("on start");
+		scrollToNext() {
+			/* 一定時間経過後次の問題へスクロールする */
+			this.currentNo += 1;
+			document.getElementsByClassName('score')[this.currentNo].scrollIntoView(true);
 		},
-		onEnd: () => {
-			console.log("on end");
-		}
 	}
 });
 
 new Vue({
 	el: '#score-component',
 	data: {
-		questions: []
+		questions: [],
 	},
 	mounted() {
 		const getjson = localStorage.getItem('data');
@@ -131,5 +138,5 @@ new Vue({
 
 		this.questions = data;
 		console.log(this.questions);
-	},
+	}
 });

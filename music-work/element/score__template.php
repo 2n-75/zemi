@@ -1,5 +1,6 @@
 <div id="score-component" class="score-container">
-	<score v-for="question in questions" v-bind:key="question.id" v-bind:question="question"></score>
+	<score v-for="question in questions" v-bind:key="question.id" v-bind:question="question">
+	</score>
 	<div class="">
 		<div class="text-center">
 			<div class="resultText__wrapper">
@@ -15,7 +16,7 @@
 
 <!-- vue template -->
 <script type="text/x-template" id="score-template">
-	<div class="score">
+	<div class="score" v-bind:class="items.no">
 			<!--出題エリア-->
 			<section id="dropzone" class="dropzone">
 				<div>
@@ -24,16 +25,16 @@
 					<div class="box absolute hint hidden" v-for="item, index in hints" v-bind:key="item.no" v-bind:class="item.className" v-bind:style="{left: item.boxPos + '%' }"></div>
 				</div>
 
-					<draggable tag="ul" :options="{group:'ITEMS'}" class="dropzone__inner flex-area">
-						<li class="box absolute" v-for="item, index in items" v-bind:key="item.no" v-bind:class="item.className" v-bind:style="{left: item.boxPos + '%' }"></li>
-					</draggable>
+				<draggable @end="noteSelected" tag="ul" class="dropzone__inner flex-area" :list="items">
+					<li class="box absolute" v-for="item, index in items" v-bind:key="item.no" v-bind:class="item.className" v-bind:style="{left: item.boxPos + '%' }"></li>
+				</draggable>
 			</section>
 
 			<!--回答エリア-->
 			<section class="relative">
-					<draggable @start="onStart" @end="onEnd" tag="ul" :options="{group:'ITEMS'}">
-						<li class="box box--border" v-for="item, index in items2" v-bind:key="item.no" v-bind:class="item.className" v-on:click="noteClick(item.length)"></li>
-					</draggable>
+				<draggable @end="noteSelected" tag="ul" :list="items2">
+					<li class="box box--border" v-for="item, index in items2" v-bind:key="item.no" v-bind:class="item.className"></li>
+				</draggable>
 				<div class="mg-10 btn-sound-frame">
 					<!--
 						<div class="btn-circle btn-sound absolute" onclick="playSound(2) , barActive()">
