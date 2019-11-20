@@ -1,26 +1,21 @@
-<div id="score-component" class="swiper-container">
-	<div class="swiper-wrapper">
-		<score v-for="question in questions" v-bind:key="question.id" v-bind:question="question"></score>
-		<div class="swiper-slide">
-			<div class="swiper-slide__inner text-center">
-				<div class="resultText__wrapper">
-					<p>おつかれさまでした！</p>
-					<p id="resultText">結果</p>
-					<div class="btn-square__wrapper text-center">
-						<a href="./top.php" class="btn-square">もどる</a>
-					</div>
+<div id="score-component" class="score-container">
+	<score v-for="question in questions" v-bind:key="question.id" v-bind:question="question"></score>
+	<div class="">
+		<div class="text-center">
+			<div class="resultText__wrapper">
+				<p>おつかれさまでした！</p>
+				<p id="resultText">結果</p>
+				<div class="btn-square__wrapper text-center">
+					<a href="./top.php" class="btn-square">もどる</a>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div id="prevBtn" class="swiper-button-prev"></div>
-	<div id="nextBtn" class="swiper-button-next"></div>
 </div>
 
 <!-- vue template -->
 <script type="text/x-template" id="score-template">
-	<div class="swiper-slide" >
-		<div class="swiper-slide__inner">
+	<div class="score">
 			<!--出題エリア-->
 			<section id="dropzone" class="dropzone">
 				<div>
@@ -35,7 +30,6 @@
 			</section>
 
 			<!--回答エリア-->
-
 			<section class="relative">
 					<draggable @start="onStart" @end="onEnd" tag="ul" :options="{group:'ITEMS'}">
 						<li class="box box--border" v-for="item, index in items2" v-bind:key="item.no" v-bind:class="item.className" v-on:click="noteClick(item.length)"></li>
@@ -62,6 +56,5 @@
 					</div>
 				</div>
 			</section>
-		</div>
 	</div>
 </script>
