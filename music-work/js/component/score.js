@@ -71,6 +71,7 @@ export const scoreComponent = Vue.component('score', {
 				this.correct = true;
 				console.log("せいかい");
 				showHint(false);
+				//this.scrollToNext();
 			} else {
 				this.correct = false;
 				console.log("ちがう");
@@ -84,11 +85,14 @@ export const scoreComponent = Vue.component('score', {
 			//showReview(true);
 		},
 		changeMess(correct) {
-			const mess = document.getElementsByClassName("mess");
+			const headMess = document.getElementById("headingHint")
 			if (correct) {
-				mess[0].innerHTML = "せいかい！次の問題に進もう！";
+				headMess.classList.remove("hidden");
+				headMess.innerHTML = "せいかい！次の問題に進むよ！";
+
 			} else {
-				mess[0].innerHTML = "ざんねん！もういちど考えてみよう！";
+				headMess.classList.remove("hidden");
+				headMess.innerHTML = "ざんねん！もういちど考えてみよう！</br>りんごが全部で4つ分になるようにえらぼう";
 			}
 		},
 		/* アンケートに回答した時 */

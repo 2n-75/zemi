@@ -46,10 +46,6 @@
 			<main>
 				<div class="content__inner">
 					<?php include "./element/score__template.php" ?>
-
-					<section class="mess-area flex-area">
-						<p class="mess"></p>
-					</section>
 				</div>
 			</main>
 			<footer>
