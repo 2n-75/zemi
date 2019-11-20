@@ -42,7 +42,8 @@
 				-->
 				</div>
 			</section>
-			<section class="review hidden" style="margin: 10px">
+			<!--
+				<section class="review hidden" style="margin: 10px">
 				<p style="color: #555">この問題はどうでしたか？</h3>
 				<div class="flex-area">
 					<div class="btn-square__wrapper text-center">
@@ -56,5 +57,6 @@
 					</div>
 				</div>
 			</section>
+			-->
 	</div>
 </script>
