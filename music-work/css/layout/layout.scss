@@ -25,7 +25,7 @@ main {
 
 header {
   position: fixed;
-  width: 100%;
+  width: 900px;
   z-index: 5;
   background: #fff;
   margin-top: -10px;
@@ -44,8 +44,7 @@ header {
   }
   h3 {
     width: 98%; /* IE8以下とAndroid4.3以下用フォールバック */
-    width: -webkit-calc(100% - 100px);
-    width: calc(100% - 100px);
+    width: 700px;
     margin: 0 20px;
     color: #555;
     font-size: 1.2em;
