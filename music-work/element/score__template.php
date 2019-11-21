@@ -5,7 +5,7 @@
 		<div class="text-center">
 			<div class="resultText__wrapper">
 				<p>おつかれさまでした！</p>
-				<p id="resultText">結果</p>
+				<p id="resultText"></p>
 				<div class="btn-square__wrapper text-center">
 					<a href="./top.php" class="btn-square">もどる</a>
 				</div>

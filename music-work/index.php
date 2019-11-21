@@ -36,7 +36,7 @@
 					</a>
 					<h3>
 						？にあてはまるおんぷはどれかな
-						<p id="headingHint" class="hidden">りんごが全部で4つ分になるようにえらぼう</p>
+						<p id="headingHint" class="hidden">【ヒント】りんごが全部で4つ分になるようにえらぼう</p>
 					</h3>
 					<div id="hintBtn" class="btn-circle f-right">
 						<span><i class="fas fa-exclamation"></i></span>

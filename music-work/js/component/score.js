@@ -58,15 +58,12 @@ export const scoreComponent = Vue.component('score', {
 	methods: {
 		noteSelected(e) {
 			console.log(e);
-			console.log(this.items);
-			console.log(this.items2);
 			// ドラッグされた要素
 			const selected = this.items2.find(item =>
 				e.item.className.includes(item.className)
 			);
 			console.log(selected.name);
 			const answerNote = this.items[this.ansNum];
-			console.log(answerNote.length);
 			if (answerNote.length == selected.length) {
 				count += 1;
 				// はてなボックスを消す
@@ -75,7 +72,7 @@ export const scoreComponent = Vue.component('score', {
 				console.log("せいかい");
 				showHint(false);
 				// 3秒後に次の問題にスクロールする
-				window.setTimeout(this.scrollToNext(), 3000)
+				window.setTimeout(this.scrollToNext(count), 3000)
 			} else {
 				this.correct = false;
 				console.log("ちがう");
@@ -96,7 +93,7 @@ export const scoreComponent = Vue.component('score', {
 
 			} else {
 				headMess.classList.remove("hidden");
-				headMess.innerHTML = "ざんねん！もういちど考えてみよう！</br>りんごが全部で4つ分になるようにえらぼう";
+				headMess.innerHTML = "ざんねん！もういちど考えてみよう！</br>【ヒント】りんごが全部で4つ分になるようにえらぼう";
 			}
 		},
 		/* アンケートに回答した時 */
@@ -129,14 +126,16 @@ export const scoreComponent = Vue.component('score', {
 			this.sumUntilLastNote += this.question.notes[index - 1];
 			return !Number.isInteger(this.sumUntilLastNote);
 		},
-		scrollToNext() {
+		scrollToNext(count) {
+			console.log("hige");
 			/* 一定時間経過後次の問題へスクロールする */
+			const scrollY = 600 * count
+			console.log(count);
+			console.log(scrollY);
 			window.scrollTo({
-				top: 700 + 500 * this.currentNo,
+				top: scrollY,
 				behavior: "smooth"
 			})
-			this.currentNo++;
-			console.log("no" + this.currentNo);
 		},
 	}
 });
