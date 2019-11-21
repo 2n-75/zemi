@@ -9,8 +9,8 @@ $beat4: 74%;
 // 使い回すもの
 .box {
   width: 80px;
-  height: 75px;
-  top: 10px;
+  height: 60px;
+  top: 6px;
   margin: 10px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -18,7 +18,7 @@ $beat4: 74%;
   @include mq-down(md) {
     width: 60px;
     height: 70px;
-    top: 6px;
+    top: 0px;
   }
   &--border {
     border: dashed 2px $mintGreen;

@@ -57,10 +57,13 @@ export const scoreComponent = Vue.component('score', {
 	},
 	methods: {
 		noteSelected(e) {
+			console.log(e);
+			console.log(this.items);
+			console.log(this.items2);
 			// ドラッグされた要素
 			const selected = this.items2.find(item =>
 				e.item.className.includes(item.className)
-			)
+			);
 			console.log(selected.name);
 			const answerNote = this.items[this.ansNum];
 			console.log(answerNote.length);
@@ -71,7 +74,8 @@ export const scoreComponent = Vue.component('score', {
 				this.correct = true;
 				console.log("せいかい");
 				showHint(false);
-				//this.scrollToNext();
+				// 3秒後に次の問題にスクロールする
+				window.setTimeout(this.scrollToNext(), 3000)
 			} else {
 				this.correct = false;
 				console.log("ちがう");
@@ -127,8 +131,12 @@ export const scoreComponent = Vue.component('score', {
 		},
 		scrollToNext() {
 			/* 一定時間経過後次の問題へスクロールする */
-			this.currentNo += 1;
-			document.getElementsByClassName('score')[this.currentNo].scrollIntoView(true);
+			window.scrollTo({
+				top: 700 + 500 * this.currentNo,
+				behavior: "smooth"
+			})
+			this.currentNo++;
+			console.log("no" + this.currentNo);
 		},
 	}
 });
