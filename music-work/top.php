@@ -36,7 +36,7 @@
 			</header>
 			<main>
 				<div class="content__inner">
-					<h3 class="text-center">むずかしさをえらぼう！</h3>
+					<h3 class="text-center" style="margin-top: 65px">むずかしさをえらぼう！</h3>
 					<div class="btn-square__wrapper text-center">
 						<span id="easy" class="btn-square">かんたん</span>
 					</div>
