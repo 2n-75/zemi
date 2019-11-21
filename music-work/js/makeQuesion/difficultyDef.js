@@ -129,6 +129,10 @@ const checkOffBeat = (notesArray) => {
 	console.log(offBeatArray);
 	return offBeatArray;
 }
+/* 裏拍が続くかどうかで難易度を分ける */
+const offBeatToDifficulty = (offBeatArray) => {
+	/* 裏拍がつづくかたまに出てくるか */
+}
 
 /* 一つの楽譜に含まれる音符or休符の種類 */
 const paramsNotesKind = (array) => {
@@ -138,15 +142,6 @@ const paramsNotesKind = (array) => {
 }
 
 /* 休符がある場合，難易度をあげる */
-const paramRest = () => {
+const paramRest = (array) => {
 
 }
-
-
-/**
- * 実行
- */
-const arrayA = [0.5, 0.5, 1, 2]
-const arrayB = [1, 1, 1, 0.5, 0.5]
-calcDifficulty(arrayA);
-calcDifficulty(arrayB);

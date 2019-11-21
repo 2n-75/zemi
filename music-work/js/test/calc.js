@@ -3,7 +3,7 @@
 */
 import { calcDifficulty } from "../makeQuesion/difficultyDef.js";
 
-const arrayA = [0.5, 0.5, 1, 2]
-const arrayB = [1, 1, 1, 0.5, 0.5]
+const arrayA = [0.5, 0.5, 1, 0.5, 0.5, 1]
+const arrayB = [0.5, 1, 0.5, 0.5, 0.5, 1]
 calcDifficulty(arrayA);
 calcDifficulty(arrayB);

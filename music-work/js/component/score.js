@@ -71,7 +71,10 @@ export const scoreComponent = Vue.component('score', {
 				this.correct = true;
 				console.log("せいかい");
 				showHint(false);
-				// 3秒後に次の問題にスクロールする
+				/*
+				* 3秒後に次の問題にスクロールする
+				* this.scrollToNext(count)だと動かない
+				*/
 				window.setTimeout(this.scrollToNext, 3000, count)
 			} else {
 				this.correct = false;
