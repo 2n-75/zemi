@@ -55,7 +55,8 @@ header {
     text-align: center;
     #headingHint {
       font-size: 0.8em;
-      margin: 10px 0;
+      margin: 5px 0;
+      line-height: 1em;
       color: $orange;
     }
     @include mq-down(md) {

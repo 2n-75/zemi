@@ -25,14 +25,14 @@
 					<div class="box absolute hint hidden" v-for="item, index in hints" v-bind:key="item.no" v-bind:class="item.className" v-bind:style="{left: item.boxPos + '%' }"></div>
 				</div>
 
-				<draggable @update="noteSelected" tag="ul" class="dropzone__inner flex-area" :list="items">
+				<draggable tag="ul" class="dropzone__inner flex-area" :list="items">
 					<li class="box absolute" v-for="item, index in items" v-bind:key="item.no" v-bind:class="item.className" v-bind:style="{left: item.boxPos + '%' }"></li>
 				</draggable>
 			</section>
 
 			<!--回答エリア-->
 			<section class="relative">
-				<draggable @update="noteSelected" tag="ul" :list="items2">
+				<draggable @end="noteSelected" tag="ul" :list="items2">
 					<li class="box box--border" v-for="item, index in items2" v-bind:key="item.no" v-bind:class="item.className"></li>
 				</draggable>
 				<div class="mg-10 btn-sound-frame">

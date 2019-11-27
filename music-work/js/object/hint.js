@@ -1,5 +1,6 @@
 /* hint */
 export function showHint(flag = true) {
+	console.log("hoge");
 	const hints = document.getElementsByClassName("hint");
 	const headingHint = document.getElementById("headingHint");
 	if (flag) {

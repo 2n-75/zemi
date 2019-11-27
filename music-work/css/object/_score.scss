@@ -4,7 +4,7 @@
 @import "../foundation/color";
 
 @mixin dropzoneHeight {
-  height: 120px;
+  height: 100px;
   @include mq-down(md) {
     height: 120px;
   }
@@ -24,7 +24,7 @@
 
   .middleLine {
     width: 96%;
-    height: 4px;
+    height: 3px;
     background: black;
     position: absolute;
     top: 50%;
