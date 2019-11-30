@@ -1,0 +1,71 @@
+@import "color";
+* {
+  margin: 0;
+  padding: 0;
+  word-break: normal;
+  word-wrap: break-word;
+}
+
+div,
+p,
+a,
+ul,
+form {
+  box-sizing: border-box;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  outline: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+ul,
+li {
+  list-style: none;
+  padding-left: 0;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+a {
+  font-weight: inherit;
+  text-decoration: inherit;
+  color: inherit;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  max-height: 99999px;
+  backface-visibility: hidden;
+  text-decoration: none;
+  color: $mintGreen;
+}
+
+body {
+  background-color: #fff;
+  margin: 0 auto;
+  color: $mintGreen;
+  font-family: "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", "メイリオ",
+    Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-size: 16px;
+}

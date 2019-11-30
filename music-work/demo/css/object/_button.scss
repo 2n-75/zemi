@@ -1,0 +1,148 @@
+@import "mediaquery";
+@import "../foundation/color";
+
+@mixin buttonSize() {
+  $button_size: 50px;
+  @include mq-down(md) {
+    $button_size: 40px;
+    i {
+      font-size: 0.8em;
+    }
+  }
+  width: $button_size;
+  height: $button_size;
+  line-height: $button_size;
+}
+.btn-circle {
+  @include buttonSize();
+  $button_color: #f39961;
+
+  display: inline-block;
+  text-decoration: none;
+  background: $button_color;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  transition: 0.4s;
+
+  &:hover {
+    background: $mintGreen;
+  }
+}
+.btn-square {
+  min-width: 120px;
+  display: inline-block;
+  padding: 1em;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+  color: $mintGreen;
+  border: solid 2px $mintGreen;
+  border-radius: 5px;
+  transition: 0.4s;
+  &:hover {
+    cursor: pointer;
+    background: $mintGreen;
+    color: #fff;
+  }
+}
+.btn-square__wrapper {
+  width: 100%;
+  padding: 10px 0;
+}
+.btn-sound-frame {
+  position: absolute;
+  top: 25%;
+  right: -5%;
+}
+
+/* ラジオボタン */
+.radio-tile-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  //set dimensions for invisible container
+  .input-container {
+    position: relative;
+    height: 3rem;
+    width: 7rem;
+    margin: 0.5rem;
+
+    //make actual radio input invisible
+    // + stretch to fill container
+    .radio-button {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    //default tile styles
+    .radio-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      border: 2px solid $mintGreen;
+      border-radius: 5px;
+      padding: 1rem;
+      transition: transform 300ms ease;
+      &:hover {
+        border: 2px solid $orange;
+        cursor: pointer;
+      }
+    }
+
+    .radio-tile-label {
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: $mintGreen;
+    }
+
+    //active tile styles
+    .radio-button:checked + .radio-tile {
+      background-color: $mintGreen;
+      border: 2px solid $mintGreen;
+      color: white;
+      transform: scale(1.1, 1.1);
+
+      .radio-tile-label {
+        color: white;
+        background-color: $mintGreen;
+      }
+    }
+  }
+}
+
+/* 音符のボタン */
+.btn-cube__group {
+  flex-wrap: wrap;
+  justify-content: center;
+  .btn-cube {
+    position: relative;
+    height: 4rem;
+    width: 4rem;
+    margin: 0.5rem;
+    border: 2px solid $mintGreen;
+    border-radius: 5px;
+    padding: 1rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    &:hover {
+      border: 2px solid $orange;
+      cursor: pointer;
+    }
+  }
+}

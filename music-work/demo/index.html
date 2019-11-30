@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Demo</title>
+
+		<!--script-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+
+		<!--stylesheet-->
+		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css">
+		<link rel="stylesheet" href="./css/foundation/reset.css">
+		<link rel="stylesheet" href="./css/layout/layout.css">
+		<link rel="stylesheet" href="./css/object/objects.css">
+
+	</head>
+
+	<body>
+		<div class="container">
+			<main>
+				<div class="content__inner">
+					<section>
+						<div class="btn-cube__group flex-area">
+							<div class="btn-cube note--whole"></div>
+							<div class="btn-cube note--halfDot"></div>
+							<div class="btn-cube note--half"></div>
+							<div class="btn-cube note--quaterDot"></div>
+							<div class="btn-cube note--quater"></div>
+							<div class="btn-cube note--eighth"></div>
+						</div>
+
+						<div class="radio-tile-group">
+							<div class="input-container">
+								<input id="note" class="radio-button" type="radio" name="radio" />
+								<div class="radio-tile">
+									<label for="note" class="radio-tile-label">音符</label>
+								</div>
+							</div>
+							<div class="input-container">
+								<input id="rest" class="radio-button" type="radio" name="radio" />
+								<div class="radio-tile">
+									<label for="rest" class="radio-tile-label">休符</label>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section>
+						<div class="stave__wrapper">
+							<div class="stave"></div>
+						</div>
+					</section>
+					<section>
+						<div class="btn-square__wrapper text-center">
+							<span id="submit" class="btn-square">難易度を調べる</span>
+						</div>
+						<p class="text-center text">難易度：1</p>
+					</section>
+				</div>
+			</main>
+			<footer>
+			</footer>
+		</div>
+		<!--scripts-->
+	</body>
+
+</html>

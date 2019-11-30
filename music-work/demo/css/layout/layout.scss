@@ -1,0 +1,82 @@
+@import "../object/mediaquery";
+@import "../foundation/color";
+
+.container {
+  max-width: 900px;
+  margin: 10px auto;
+}
+
+main {
+  .content__inner {
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    @include mq-down(md) {
+      width: 90%;
+    }
+  }
+  .score-container {
+    margin-top: 65px;
+    @include mq-down(md) {
+      margin-top: 80px;
+    }
+  }
+}
+
+header {
+  position: fixed;
+  width: 900px;
+  z-index: 5;
+  background: #fff;
+  margin-top: -10px;
+  height: 70px;
+  @include mq-down(md) {
+    width: 100%;
+  }
+  .content__inner {
+    width: 100%;
+    border-bottom: 2px solid #ddd;
+    align-items: center;
+    max-height: 70px;
+  }
+  h1 {
+    font-size: 1.5em;
+    color: $orange;
+    text-align: center;
+    line-height: 40px;
+  }
+  h3 {
+    width: 98%; /* IE8以下とAndroid4.3以下用フォールバック */
+    width: 700px;
+    margin: 0 20px;
+    padding: 0.8em 0;
+    color: #555;
+    font-size: 1em;
+    text-align: center;
+    #headingHint {
+      font-size: 0.8em;
+      margin: 5px 0;
+      line-height: 1em;
+      color: $orange;
+    }
+    @include mq-down(md) {
+      width: -webkit-calc(100% -100px);
+      width: calc(100% -100px);
+      width: 80%;
+      padding: 0.5em 0;
+      font-size: 1em;
+    }
+  }
+}
+
+.swiper-slide__inner {
+  width: 90%;
+  margin: 0 5%;
+}
+
+.resultText__wrapper {
+  margin: 30% 0;
+  p {
+    margin: 10px 0;
+  }
+}

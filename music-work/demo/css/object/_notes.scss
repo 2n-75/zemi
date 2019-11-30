@@ -1,0 +1,87 @@
+@import "mediaquery";
+@import "../foundation/color";
+// 音符
+$beat1: 21%;
+$beat2: 38%;
+$beat3: 57%;
+$beat4: 74%;
+
+// 使い回すもの
+.box {
+  width: 80px;
+  height: 65px;
+  top: -7px;
+  margin: 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 0;
+  @include mq-down(md) {
+    width: 60px;
+    height: 70px;
+    top: 0px;
+  }
+  &--border {
+    border: dashed 2px $mintGreen;
+  }
+  &--draggable {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+@mixin box__postion($left: left) {
+  left: $left;
+}
+
+// 画像
+.note {
+  &--whole {
+    // 画像用意する
+    background-image: url(../../../img/notes/note_whole.png);
+    width: 80%;
+  }
+  &--halfDot {
+    // 画像用意する
+    background-image: url(../../../img/notes/note_halfDot.png);
+    width: 60%;
+  }
+  &--half {
+    background-image: url(../../../img/notes/note_half.png);
+    width: 40%;
+  }
+  &--quaterDot {
+    background-image: url(../../../img/notes/note_quaterDot.png);
+    width: 30%;
+  }
+  &--quater {
+    background-image: url(../../../img/notes/note_quater.png);
+    width: 20%;
+  }
+  &--eighth {
+    background-image: url(../../../img/notes/note_eighth.png);
+    width: 10%;
+  }
+}
+
+.stave__wrapper {
+  width: 100%;
+  height: 8rem;
+  .stave {
+    width: 80%;
+    height: 100%;
+    margin: 10px auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../../../img/stave.png);
+
+    &:hover {
+      border-radius: 5px;
+      border: 2px solid $orange;
+      cursor: pointer;
+    }
+  }
+}
+.text {
+  font-weight: 600;
+  color: #777;
+}
