@@ -145,4 +145,7 @@
       cursor: pointer;
     }
   }
+  .btn-cube__selected {
+    border: 2px solid $orange;
+  }
 }

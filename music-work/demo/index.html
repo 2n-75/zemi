@@ -11,6 +11,8 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 
+		<script type="module" src="./js/script.js"></script>
+
 		<!--stylesheet-->
 		<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
@@ -27,17 +29,17 @@
 				<div class="content__inner">
 					<section>
 						<div class="btn-cube__group flex-area">
-							<div class="btn-cube note--whole"></div>
-							<div class="btn-cube note--halfDot"></div>
-							<div class="btn-cube note--half"></div>
-							<div class="btn-cube note--quaterDot"></div>
-							<div class="btn-cube note--quater"></div>
-							<div class="btn-cube note--eighth"></div>
+							<div id="whole" class="btn-cube note--whole"></div>
+							<div id="halfDot" class="btn-cube note--halfDot"></div>
+							<div id="half" class="btn-cube note--half"></div>
+							<div id="quaterDot" class="btn-cube note--quaterDot"></div>
+							<div id="quater" class="btn-cube note--quater"></div>
+							<div id="eighth" class="btn-cube note--eighth"></div>
 						</div>
 
 						<div class="radio-tile-group">
 							<div class="input-container">
-								<input id="note" class="radio-button" type="radio" name="radio" />
+								<input id="note" class="radio-button" type="radio" name="radio" checked />
 								<div class="radio-tile">
 									<label for="note" class="radio-tile-label">音符</label>
 								</div>
@@ -52,7 +54,7 @@
 					</section>
 					<section>
 						<div class="stave__wrapper">
-							<div class="stave"></div>
+							<div id="stave" class="stave"></div>
 						</div>
 					</section>
 					<section>
