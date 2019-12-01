@@ -13,41 +13,7 @@
   margin-bottom: 30px;
   border-bottom: 2px solid #ddd;
 }
-.dropzone {
-  position: relative;
-  width: 100%;
-  margin-top: 16px;
-  background-image: url(../../img/4-4.png);
-  background-repeat: no-repeat;
-  @include dropzoneHeight;
-  background-size: contain;
 
-  .middleLine {
-    width: 96%;
-    height: 3px;
-    background: black;
-    position: absolute;
-    top: 50%;
-    margin: 0 2%;
-  }
-
-  .timing-bar {
-    @include dropzoneHeight();
-    background-color: $mintGreen;
-  }
-
-  .dropzone__inner {
-    @include dropzoneHeight;
-  }
-
-  // 音符パーツ
-  .box--pos1,
-  .box--pos2,
-  .box--pos3,
-  .box--pos4 {
-    position: absolute;
-  }
-}
 .mess-area {
   padding: 1% 10%;
   .mess {
