@@ -1,3 +1,5 @@
+import { calcDifficulty } from "../../js/makeQuesion/difficultyDef.js";
+
 const lengths = []
 const notes = []
 let imgLeft = 100;
@@ -33,8 +35,13 @@ function staveClick(e) {
 }
 
 /* 難易度を調べるボタン */
-function getDifficulty(e) {
+function getDifficulty() {
 	console.log("計算する");
+	const text = document.getElementById("difficultyText");
+	calcDifficulty(lengths);
+	document.getElementById("difficulty").innerHTML = calcDifficulty(lengths);
+	text.classList.remove("hidden");
+
 }
 
 /* 配列にデータを入れる */

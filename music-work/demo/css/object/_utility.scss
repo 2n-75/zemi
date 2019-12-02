@@ -1,5 +1,7 @@
+@import "../foundation/color";
+
 .bold {
-  font-weight: bold;
+  font-weight: 600;
 }
 .relative {
   position: relative;
@@ -21,4 +23,7 @@
 }
 .text-center {
   text-align: center;
+}
+.text-primary {
+  color: $mintGreen;
 }
