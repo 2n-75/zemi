@@ -1,6 +1,6 @@
 const lengths = []
 const notes = []
-let imgPos = 0;
+let imgLeft = 100;
 /* 音符のボタン押した時 */
 function notesBtnClick(e) {
 	const btns = document.getElementsByClassName("btn-cube");
@@ -14,7 +14,6 @@ function notesBtnClick(e) {
 
 /* 五線譜押した時 */
 function staveClick(e) {
-	console.log("配列にデータを入れる");
 	/* 長さを取得 */
 	const selectedId = fetchSelectedNote();
 	const value = idToLength(selectedId);
@@ -40,7 +39,6 @@ function getDifficulty(e) {
 
 /* 配列にデータを入れる */
 function fetchSelectedNote() {
-	console.log("sss");
 	/* 長さを取得 */
 	let selectedId = '';
 	const btns = document.getElementsByClassName("btn-cube");
@@ -58,9 +56,10 @@ function addImage(id, isNote) {
 	const newNote = document.createElement('div');
 	newNote.classList.add('box');
 	newNote.classList.add('box--border');
-	console.log(setImgClass(id, isNote));
 	newNote.classList.add(setImgClass(id, isNote));
-	// leftとwidthをidから設定する
+	// leftをidから設定する
+	newNote.style.left = imgLeft.toString() + "px";
+	imgLeft += 100 * idToLength(id);
 	//最後の子要素として追加
 	stave.appendChild(newNote);
 

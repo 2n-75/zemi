@@ -12,6 +12,7 @@ $beat4: 74%;
   width: 80px;
   height: 65px;
   top: 22px;
+  left: 100px;
   margin: 10px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -39,28 +40,29 @@ $beat4: 74%;
   &--whole {
     // 画像用意する
     background-image: url(../../../img/notes/note_whole.png);
-    width: 80%;
+    width: 24rem;
   }
   &--halfDot {
     // 画像用意する
     background-image: url(../../../img/notes/note_halfDot.png);
-    width: 60%;
+    width: 18rem;
   }
   &--half {
     background-image: url(../../../img/notes/note_half.png);
-    width: 40%;
+    width: 12rem;
   }
   &--quaterDot {
     background-image: url(../../../img/notes/note_quaterDot.png);
-    width: 30%;
+    width: 9rem;
   }
   &--quater {
     background-image: url(../../../img/notes/note_quater.png);
-    width: 20%;
+    width: 6rem;
   }
   &--eighth {
     background-image: url(../../../img/notes/note_eighth.png);
-    width: 10%;
+    width: 3rem;
+    background-size: cover;
   }
 }
 
