@@ -65,6 +65,39 @@ $beat4: 74%;
     background-size: cover;
   }
 }
+.rest {
+  &--whole {
+    // 画像用意する
+    background-image: url(../../../img/rest/rest_whole.png);
+    width: 24rem;
+    top: 8px;
+    left: 250px;
+  }
+  &--halfDot {
+    // 画像用意する
+    background-image: url(../../../img/notes/note_halfDot.png);
+    width: 18rem;
+    top: 15px;
+  }
+  &--half {
+    background-image: url(../../../img/rest/rest_half.png);
+    width: 12rem;
+    top: 15px;
+  }
+  &--quaterDot {
+    background-image: url(../../../img/rest/rest_quaterDot.png);
+    width: 9rem;
+  }
+  &--quater {
+    background-image: url(../../../img/rest/rest_quater.png);
+    width: 6rem;
+  }
+  &--eighth {
+    background-image: url(../../../img/rest/rest_eighth.png);
+    width: 3rem;
+    background-size: cover;
+  }
+}
 
 .stave__wrapper {
   width: 100%;
@@ -85,6 +118,7 @@ $beat4: 74%;
     }
   }
 }
+
 .text {
   font-weight: 600;
   color: #777;
