@@ -1,7 +1,7 @@
 import { calcDifficulty } from "../../js/makeQuesion/difficultyDef.js";
 
-const lengths = []
-const notes = []
+const notesArray = []
+const isNoteArray = []
 let imgLeft = 100;
 /* 音符のボタン押した時 */
 function notesBtnClick(e) {
@@ -21,16 +21,16 @@ function staveClick(e) {
 	const value = idToLength(selectedId);
 	/* 音符が休符かを取得 */
 	const radios = document.getElementsByName("radio");
-	const isNote = radios[0].checked ? 1 : 0;
+	const isNote = radios[0].checked;
 
 	/* 五線譜に画像を追加する */
 	addImage(selectedId, isNote);
 
 	/* 配列に入れる */
-	lengths.push(value);
-	console.log(lengths);
-	notes.push(isNote);
-	console.log(notes);
+	notesArray.push(value);
+	console.log(notesArray);
+	isNoteArray.push(isNote);
+	console.log(isNoteArray);
 
 }
 
@@ -38,8 +38,7 @@ function staveClick(e) {
 function getDifficulty() {
 	console.log("計算する");
 	const text = document.getElementById("difficultyText");
-	calcDifficulty(lengths);
-	document.getElementById("difficulty").innerHTML = calcDifficulty(lengths);
+	document.getElementById("difficulty").innerHTML = calcDifficulty(notesArray, isNoteArray);
 	text.classList.remove("hidden");
 
 }

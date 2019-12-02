@@ -5,3 +5,9 @@ export const NOTES_DATA = [{ Dc: 2, L: 4 }, { Dc: 2, L: 3 }, { Dc: 2, L: 2 }, { 
 // レベルを分ける難易度
 export const EASY = 3;
 export const HARD = 6;
+
+/* 重み付けの値 */
+// 音符に対し休符につける重み
+export const W1 = 1.2;
+// 裏拍につける重み
+export const W2 = 2;

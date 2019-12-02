@@ -3,31 +3,38 @@
 */
 
 import { average } from "./calculate.js";
-import { NOTES_DATA } from './const.js';
+import { NOTES_DATA, W1, W2 } from './const.js';
 
 /* 実行 */
-export const calcDifficulty = (notesArray) => {
-	console.log("入力データ:" + notesArray);
+export const calcDifficulty = (notesArray, isNoteArray) => {
+	console.log("長さの配列:" + notesArray);
+	console.log("音符かどうかの配列:" + isNoteArray);
 	// もっともよく使われている音符の平均難易度と平均音価
 	const { Dp, aveL } = calc_average(notesArray);
 	console.log("一番多く使われている音符の平均難易度は" + Dp + " 平均音価は" + aveL);
-	const { A, S } = calc_sumValue(aveL, Dp, notesArray);
+	const { A, S } = calc_sumValue(aveL, Dp, notesArray, isNoteArray);
 	const hasOffBeat = checkOffBeat(notesArray) | false;
-	//const diffculty = hasOffBeat ? Dp + A - S : Dp + A - S + 2;
+	//const diffculty = hasOffBeat ? Dp + A - S : Dp + A - S + W2;
 	const difficulty = Dp + A - S;
 	console.log("難易度:" + difficulty);
-	return Math.round(difficulty);
+	return Math.round(difficulty * 10) / 10;
 }
 
 /* 便利関数 */
-// 音符の長さから難易度を返す
-const L_to_Dc = (l) => {
+/**
+ * 難易度を返す関数
+ * @param {音符の長さ} l
+ * @param {音符かどうか} isNote
+ * 休符の場合，長さに比例して難しくなるように重みづけをする
+ */
+const to_Dc = (l, isNote) => {
 	let dc = 0;
 	for (let i = 0; i < NOTES_DATA.length; i++) {
 		if (NOTES_DATA[i].L == l) {
-			dc = NOTES_DATA[i].Dc;
+			dc = isNote ? NOTES_DATA[i].Dc : NOTES_DATA[i].Dc * W1;
 		}
 	}
+	console.log(dc);
 	return dc;
 }
 
@@ -57,7 +64,8 @@ const appearanceCounter = (_data) => {
 	}
 	for (let j = 0; j < counts.length; j++) {
 		for (let i = 0; i < _data.length; i++) {
-			let currentDc = L_to_Dc(_data[i]);
+			// 暫定的にDcを求める時は音符の難易度を入れておく
+			let currentDc = to_Dc(_data[i], true);
 			if (counts[j].Dc == currentDc) {
 				counts[j].count = counts[j].count ? counts[j].count + 1 : 1;
 			}
@@ -66,7 +74,7 @@ const appearanceCounter = (_data) => {
 	return counts;
 }
 // 合計加算値A, 合計減算値Sを求める
-const calc_sumValue = (aveL, Dp, notesArray) => {
+const calc_sumValue = (aveL, Dp, notesArray, isNoteArray) => {
 	let notesNum = 0;
 	// 長さがaveL(頻出音価)より短い音符の総数をNs、長い音符の総数をNlとする
 	let Dsn = [];
@@ -75,13 +83,13 @@ const calc_sumValue = (aveL, Dp, notesArray) => {
 		if (notesArray[i] != aveL) {
 			notesNum += 1;
 			if (notesArray[i] < aveL) {
-				Dsn.push(L_to_Dc(notesArray[i]));
+				Dsn.push(to_Dc(notesArray[i], isNoteArray[i]));
 			} else if (notesArray[i] > aveL) {
-				Dln.push(L_to_Dc(notesArray[i]));
+				Dln.push(to_Dc(notesArray[i], isNoteArray[i]));
 			}
 		}
 	}
-	// Dsn, Dlnの重複をなくす(あったほうがいいのか？)
+	// Dsn, Dlnの重複をなくす
 	Dsn = Dsn.filter((x, i, self) => {
 		return self.indexOf(x) === i;
 	});
@@ -129,19 +137,10 @@ const checkOffBeat = (notesArray) => {
 	console.log(offBeatArray);
 	return offBeatArray;
 }
-/* 裏拍が続くかどうかで難易度を分ける */
-const offBeatToDifficulty = (offBeatArray) => {
-	/* 裏拍がつづくかたまに出てくるか */
-}
 
 /* 一つの楽譜に含まれる音符or休符の種類 */
 const paramsNotesKind = (array) => {
 	return array.filter(function (x, i, self) {
 		return self.indexOf(x) === i;
 	});
-}
-
-/* 休符がある場合，難易度をあげる */
-const paramRest = (array) => {
-
 }
