@@ -55,7 +55,6 @@ function addImage(id, isNote) {
 	const stave = document.getElementById('stave');
 	const newNote = document.createElement('div');
 	newNote.classList.add('box');
-	newNote.classList.add('box--border');
 	newNote.classList.add(setImgClass(id, isNote));
 	// leftをidから設定する
 	newNote.style.left = imgLeft.toString() + "px";
