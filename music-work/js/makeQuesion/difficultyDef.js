@@ -13,9 +13,12 @@ export const calcDifficulty = (notesArray, isNoteArray) => {
 	const { Dp, aveL } = calc_average(notesArray);
 	console.log("一番多く使われている音符の平均難易度は" + Dp + " 平均音価は" + aveL);
 	const { A, S } = calc_sumValue(aveL, Dp, notesArray, isNoteArray);
-	const hasOffBeat = checkOffBeat(notesArray) | false;
-	//const diffculty = hasOffBeat ? Dp + A - S : Dp + A - S + W2;
-	const difficulty = Dp + A - S;
+	const hasOffBeat = checkOffBeat(notesArray, isNoteArray);
+	console.log("裏拍:" + hasOffBeat.includes(1));
+	let difficulty = Dp + A - S;
+	if (hasOffBeat.includes(1)) {
+		difficulty += W2;
+	}
 	console.log("難易度:" + difficulty);
 	return Math.round(difficulty * 10) / 10;
 }
@@ -24,17 +27,16 @@ export const calcDifficulty = (notesArray, isNoteArray) => {
 /**
  * 難易度を返す関数
  * @param {音符の長さ} l
- * @param {音符かどうか} isNote
- * 休符の場合，長さに比例して難しくなるように重みづけをする
+ * @param {休符による重み付けを行うか} isRestWeight
  */
-const to_Dc = (l, isNote) => {
+const to_Dc = (l, isRestWeight) => {
 	let dc = 0;
+	const W = 1.5 / l
 	for (let i = 0; i < NOTES_DATA.length; i++) {
 		if (NOTES_DATA[i].L == l) {
-			dc = isNote ? NOTES_DATA[i].Dc : NOTES_DATA[i].Dc * W1;
+			dc = isRestWeight ? NOTES_DATA[i].Dc + W : NOTES_DATA[i].Dc;
 		}
 	}
-	console.log(dc);
 	return dc;
 }
 
@@ -57,7 +59,7 @@ const calc_average = (_data) => {
 }
 
 // 音符の難易度と出現回数のjsonを返す
-const appearanceCounter = (_data) => {
+const appearanceCounter = (_data, isNoteArray) => {
 	let counts = [];
 	for (let i = 0; i < NOTES_DATA.length; i++) {
 		counts.push({ Dc: NOTES_DATA[i].Dc, L: NOTES_DATA[i].L, count: 0 });
@@ -80,14 +82,30 @@ const calc_sumValue = (aveL, Dp, notesArray, isNoteArray) => {
 	let Dsn = [];
 	let Dln = [];
 	for (let i = 0; i < notesArray.length; i++) {
-		if (notesArray[i] != aveL) {
+		if (isNoteArray[i]) {
+			if (notesArray[i] != aveL) {
+				notesNum += 1;
+				const isRestWeight = restWeight(i, isNoteArray);
+				if (notesArray[i] < aveL) {
+					Dsn.push(to_Dc(notesArray[i], false));
+				} else if (notesArray[i] > aveL) {
+					Dln.push(to_Dc(notesArray[i], false));
+				}
+			}
+		} else {
+			console.log("休符の時");
 			notesNum += 1;
+			const isRestWeight = restWeight(i, isNoteArray);
+			console.log(i + "の休符重み付け" + isRestWeight);
+			const D = to_Dc(notesArray[i], isRestWeight);
+			console.log(D);
 			if (notesArray[i] < aveL) {
-				Dsn.push(to_Dc(notesArray[i], isNoteArray[i]));
+				Dsn.push(D);
 			} else if (notesArray[i] > aveL) {
-				Dln.push(to_Dc(notesArray[i], isNoteArray[i]));
+				Dln.push(D);
 			}
 		}
+
 	}
 	// Dsn, Dlnの重複をなくす
 	Dsn = Dsn.filter((x, i, self) => {
@@ -115,28 +133,55 @@ const calc_sumValue = (aveL, Dp, notesArray, isNoteArray) => {
 	}
 	return { A, S };
 }
-
-/* 裏拍が含まれる拍を返す */
-const checkOffBeat = (notesArray) => {
-	/**
-	 * 裏拍の条件
-	 * 1 一つ前までの音符の長さの合計が整数でない
-	 * 2 一つ前と自分の長さを足すと整数でない
-	 */
+/**
+ *
+ * @param {配列のindex} index
+ * @param {音符かどうかの配列} isNoteArray
+ * 休符による重み付けが必要かを返す関数
+ * 休符は前後を音符に挟まれている場合true
+ */
+const restWeight = (index, isNoteArray) => {
+	if (index == 0) {
+		return isNoteArray[index + 1];
+	} else if (index == isNoteArray.length - 1) {
+		return isNoteArray[index - 1];
+	} else {
+		if (isNoteArray[index - 1] == false && isNoteArray[index + 1] == false) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+}
+/**
+ *
+ * @param {音長の配列} notesArray
+ * その音符が裏拍かを返す関数
+ * 裏拍の条件：
+ * 一つ前までの音符の長さの合計が整数でない
+ * はじく：たた（一つ前が音符，An-1+An==1）
+ * 一つ前がAn-1+An!=1
+ * 一つ前が音符かつと自分の長さを足すと整数でない
+ */
+const checkOffBeat = (notesArray, isNoteArray) => {
 	const offBeatArray = [];
 	let lenSum = 0;
 	offBeatArray[0] = 0;
 	for (let i = 1; i < notesArray.length; i++) {
 		lenSum = lenSum + notesArray[i - 1];
-		if (!Number.isInteger(lenSum) && !Number.isInteger(notesArray[i - 1] + notesArray[i])) {
-			offBeatArray.push(1);
+		if (!Number.isInteger(lenSum)) {
+			if (isNoteArray[i - 1] == true && notesArray[i - 1] + notesArray[i] == 1) {
+				offBeatArray.push(0);
+			} else {
+				offBeatArray.push(1);
+			}
 		} else {
 			offBeatArray.push(0);
 		}
 	}
-	console.log(offBeatArray);
 	return offBeatArray;
 }
+
 
 /* 一つの楽譜に含まれる音符or休符の種類 */
 const paramsNotesKind = (array) => {

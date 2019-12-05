@@ -28,19 +28,14 @@ function staveClick(e) {
 
 	/* 配列に入れる */
 	notesArray.push(value);
-	console.log(notesArray);
 	isNoteArray.push(isNote);
-	console.log(isNoteArray);
-
 }
 
 /* 難易度を調べるボタン */
 function getDifficulty() {
-	console.log("計算する");
 	const text = document.getElementById("difficultyText");
 	document.getElementById("difficulty").innerHTML = calcDifficulty(notesArray, isNoteArray);
 	text.classList.remove("hidden");
-
 }
 
 /* 配列にデータを入れる */
