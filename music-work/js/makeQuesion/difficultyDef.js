@@ -13,9 +13,12 @@ export const calcDifficulty = (notesArray, isNoteArray) => {
 	const { Dp, aveL } = calc_average(notesArray);
 	console.log("一番多く使われている音符の平均難易度は" + Dp + " 平均音価は" + aveL);
 	const { A, S } = calc_sumValue(aveL, Dp, notesArray, isNoteArray);
+	console.log("A:" + A);
+	console.log("S:" + S);
 	const hasOffBeat = checkOffBeat(notesArray, isNoteArray);
 	console.log("裏拍:" + hasOffBeat.includes(1));
 	let difficulty = Dp + A - S;
+
 	if (hasOffBeat.includes(1)) {
 		difficulty += W2;
 	}
@@ -31,10 +34,11 @@ export const calcDifficulty = (notesArray, isNoteArray) => {
  */
 const to_Dc = (l, isRestWeight) => {
 	let dc = 0;
-	const W = 1.5 / l
+	const W = W1 / l;
 	for (let i = 0; i < NOTES_DATA.length; i++) {
 		if (NOTES_DATA[i].L == l) {
 			dc = isRestWeight ? NOTES_DATA[i].Dc + W : NOTES_DATA[i].Dc;
+			//dc = NOTES_DATA[i].Dc
 		}
 	}
 	return dc;
@@ -59,21 +63,22 @@ const calc_average = (_data) => {
 }
 
 // 音符の難易度と出現回数のjsonを返す
-const appearanceCounter = (_data, isNoteArray) => {
-	let counts = [];
-	for (let i = 0; i < NOTES_DATA.length; i++) {
-		counts.push({ Dc: NOTES_DATA[i].Dc, L: NOTES_DATA[i].L, count: 0 });
-	}
-	for (let j = 0; j < counts.length; j++) {
+const appearanceCounter = (_data) => {
+	let counter = [];
+	for (let j = 0; j < NOTES_DATA.length; j++) {
+		counter[j] = 0;
 		for (let i = 0; i < _data.length; i++) {
-			// 暫定的にDcを求める時は音符の難易度を入れておく
-			let currentDc = to_Dc(_data[i], true);
-			if (counts[j].Dc == currentDc) {
-				counts[j].count = counts[j].count ? counts[j].count + 1 : 1;
+			if (NOTES_DATA[j].L == _data[i]) {
+				counter[j] += 1;
 			}
 		}
 	}
-	return counts;
+	const ary = []
+	for (let i = 0; i < NOTES_DATA.length; i++) {
+		const newData = { Dc: NOTES_DATA[i].Dc, L: NOTES_DATA[i].L, count: counter[i] }
+		ary.push(newData);
+	}
+	return ary;
 }
 // 合計加算値A, 合計減算値Sを求める
 const calc_sumValue = (aveL, Dp, notesArray, isNoteArray) => {
@@ -82,31 +87,22 @@ const calc_sumValue = (aveL, Dp, notesArray, isNoteArray) => {
 	let Dsn = [];
 	let Dln = [];
 	for (let i = 0; i < notesArray.length; i++) {
-		if (isNoteArray[i]) {
-			if (notesArray[i] != aveL) {
-				notesNum += 1;
-				const isRestWeight = restWeight(i, isNoteArray);
-				if (notesArray[i] < aveL) {
-					Dsn.push(to_Dc(notesArray[i], false));
-				} else if (notesArray[i] > aveL) {
-					Dln.push(to_Dc(notesArray[i], false));
-				}
-			}
-		} else {
-			console.log("休符の時");
+		if (notesArray[i] != aveL) {
 			notesNum += 1;
 			const isRestWeight = restWeight(i, isNoteArray);
-			console.log(i + "の休符重み付け" + isRestWeight);
+			/** 重み付けしない場合 */
+			//const D = to_Dc(notesArray[i], false);
+			/** 重み付けする場合 */
 			const D = to_Dc(notesArray[i], isRestWeight);
-			console.log(D);
+			console.log("難易度：" + D);
 			if (notesArray[i] < aveL) {
 				Dsn.push(D);
 			} else if (notesArray[i] > aveL) {
 				Dln.push(D);
 			}
 		}
-
 	}
+
 	// Dsn, Dlnの重複をなくす
 	Dsn = Dsn.filter((x, i, self) => {
 		return self.indexOf(x) === i;
@@ -116,13 +112,17 @@ const calc_sumValue = (aveL, Dp, notesArray, isNoteArray) => {
 	});
 
 	// 1回の比較で増加、減少され得る上限値
-	let Amax = (10 - Dp) / notesNum;
-	let Smax = (Dp - 1) / notesNum;
+	const Amax = (10 - Dp) / notesNum;
+	const Smax = (Dp - 1) / notesNum;
+	console.log(notesNum);
+	console.log(Amax);
+	console.log(Smax);
 
 	// 合計加算値
 	let A = 0;
 	for (let i = 0; i < Dsn.length; i++) {
 		let tmp = (Dsn[i] - Dp) / Dp;
+		console.log(tmp);
 		A += tmp * Amax;
 	}
 	// 合計減算値
@@ -141,6 +141,9 @@ const calc_sumValue = (aveL, Dp, notesArray, isNoteArray) => {
  * 休符は前後を音符に挟まれている場合true
  */
 const restWeight = (index, isNoteArray) => {
+	if (isNoteArray[index] == true) {
+		return false;
+	}
 	if (index == 0) {
 		return isNoteArray[index + 1];
 	} else if (index == isNoteArray.length - 1) {
