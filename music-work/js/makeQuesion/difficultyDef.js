@@ -13,15 +13,11 @@ export const calcDifficulty = (notesArray, isNoteArray) => {
 	const { Dp, aveL } = calc_average(notesArray);
 	console.log("一番多く使われている音符の平均難易度は" + Dp + " 平均音価は" + aveL);
 	const { A, S } = calc_sumValue(aveL, Dp, notesArray, isNoteArray);
-	console.log("A:" + A);
-	console.log("S:" + S);
-	const hasOffBeat = checkOffBeat(notesArray, isNoteArray);
-	console.log("裏拍:" + hasOffBeat.includes(1));
-	let difficulty = Dp + A - S;
-
-	if (hasOffBeat.includes(1)) {
-		difficulty += W2;
-	}
+	const Wrest = setRestWeight(notesArray, isNoteArray);
+	console.log("休符による重み付けパターン:" + Wrest);
+	const WoffBeat = checkOffBeat(notesArray, isNoteArray).includes(1) ? 1 : 0;
+	console.log("裏拍:" + WoffBeat);
+	const difficulty = Dp + A - S + W1[Wrest] + W2[WoffBeat];
 	console.log("難易度:" + difficulty);
 	return Math.round(difficulty * 10) / 10;
 }
@@ -32,13 +28,11 @@ export const calcDifficulty = (notesArray, isNoteArray) => {
  * @param {音符の長さ} l
  * @param {休符による重み付けを行うか} isRestWeight
  */
-const to_Dc = (l, isRestWeight) => {
+const to_Dc = (l) => {
 	let dc = 0;
-	const W = W1 / l;
 	for (let i = 0; i < NOTES_DATA.length; i++) {
 		if (NOTES_DATA[i].L == l) {
-			dc = isRestWeight ? NOTES_DATA[i].Dc + W : NOTES_DATA[i].Dc;
-			//dc = NOTES_DATA[i].Dc
+			dc = NOTES_DATA[i].Dc;
 		}
 	}
 	return dc;
@@ -89,12 +83,10 @@ const calc_sumValue = (aveL, Dp, notesArray, isNoteArray) => {
 	for (let i = 0; i < notesArray.length; i++) {
 		if (notesArray[i] != aveL) {
 			notesNum += 1;
-			const isRestWeight = restWeight(i, isNoteArray);
 			/** 重み付けしない場合 */
-			//const D = to_Dc(notesArray[i], false);
+			const D = to_Dc(notesArray[i]);
 			/** 重み付けする場合 */
-			const D = to_Dc(notesArray[i], isRestWeight);
-			console.log("難易度：" + D);
+			// const D = to_Dc(notesArray[i]);
 			if (notesArray[i] < aveL) {
 				Dsn.push(D);
 			} else if (notesArray[i] > aveL) {
@@ -114,9 +106,6 @@ const calc_sumValue = (aveL, Dp, notesArray, isNoteArray) => {
 	// 1回の比較で増加、減少され得る上限値
 	const Amax = (10 - Dp) / notesNum;
 	const Smax = (Dp - 1) / notesNum;
-	console.log(notesNum);
-	console.log(Amax);
-	console.log(Smax);
 
 	// 合計加算値
 	let A = 0;
@@ -135,25 +124,50 @@ const calc_sumValue = (aveL, Dp, notesArray, isNoteArray) => {
 }
 /**
  *
- * @param {配列のindex} index
+ * @param {音符の長さの配列} notesArray
  * @param {音符かどうかの配列} isNoteArray
  * 休符による重み付けが必要かを返す関数
- * 休符は前後を音符に挟まれている場合true
+ * return
+ * 0:休符なし
+ * 1:8分以下の休符あり
+ * 2:4分休符あり
+ * 3:それ以外
  */
-const restWeight = (index, isNoteArray) => {
-	if (isNoteArray[index] == true) {
-		return false;
-	}
-	if (index == 0) {
-		return isNoteArray[index + 1];
-	} else if (index == isNoteArray.length - 1) {
-		return isNoteArray[index - 1];
-	} else {
-		if (isNoteArray[index - 1] == false && isNoteArray[index + 1] == false) {
-			return false;
-		} else {
-			return true;
+const setRestWeight = (notesArray, isNoteArray) => {
+	/** 休符が一つでも含まれる時 */
+	if (isNoteArray.includes(false)) {
+		let tmpL = 4;
+		for (let i = 0; i < isNoteArray.length; i++) {
+			if (!isNoteArray[i]) {
+				if (i == 0 && isNoteArray[i + 1]) {
+					/** 左端にありすぐ右隣が音符 */
+					if (tmpL > notesArray[i]) {
+						tmpL = notesArray[i];
+					}
+				} else if (i == isNoteArray.length - 1 && isNoteArray[i - 1]) {
+					/** 右端にありすぐ左隣が音符 */
+					if (tmpL > notesArray[i]) {
+						tmpL = notesArray[i];
+					}
+				} else if (isNoteArray[i - 1] && isNoteArray[i + 1]) {
+					/** 両隣を音符に挟まれた休符 */
+					if (tmpL > notesArray[i]) {
+						tmpL = notesArray[i];
+					}
+				} else {
+					/** 重み付けしない休符 */
+				}
+			}
 		}
+		if (tmpL <= 0.5) {
+			return 1;
+		} else if (0.5 < tmpL && tmpL <= 1) {
+			return 2;
+		} else {
+			return 3;
+		}
+	} else {
+		return 0;
 	}
 }
 /**
