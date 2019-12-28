@@ -35,13 +35,6 @@
 				<draggable @end="noteSelected" tag="ul" :list="items2">
 					<li class="box box--border" v-for="item, index in items2" v-bind:key="item.no" v-bind:class="item.className"></li>
 				</draggable>
-				<div class="mg-10 btn-sound-frame">
-					<!--
-						<div class="btn-circle btn-sound absolute" onclick="playSound(2) , barActive()">
-						<span><i class="fas fa-music"></i></span>
-					</div>
-				-->
-				</div>
 			</section>
 			<!--
 				<section class="review hidden" style="margin: 10px">

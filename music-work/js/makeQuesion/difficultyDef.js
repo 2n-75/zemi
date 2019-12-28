@@ -111,7 +111,6 @@ const calc_sumValue = (aveL, Dp, notesArray, isNoteArray) => {
 	let A = 0;
 	for (let i = 0; i < Dsn.length; i++) {
 		let tmp = (Dsn[i] - Dp) / Dp;
-		console.log(tmp);
 		A += tmp * Amax;
 	}
 	// 合計減算値

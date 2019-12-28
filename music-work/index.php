@@ -31,15 +31,24 @@
 		<div class="container">
 			<header>
 				<div class="content__inner flex-area">
-					<a href="./top.php" class="btn-circle">
-						<span><i class="fas fa-arrow-left"></i></span>
-					</a>
+					<div class="w-5 mg-10">
+						<a href="./top.php" class="btn-circle f-right">
+							<span><i class="fas fa-arrow-left"></i></span>
+						</a>
+					</div>
 					<h3>
 						？にあてはまるおんぷはどれかな
 						<p id="headingHint" class="hidden">【ヒント】りんごが全部で4つ分になるようにえらぼう</p>
 					</h3>
-					<div id="hintBtn" class="btn-circle f-right">
-						<span><i class="fas fa-exclamation"></i></span>
+					<div class="w-5 mg-10">
+						<div class="btn-circle btn-sound" onclick="playSound(2) , barActive()">
+							<span><i class="fas fa-music"></i></span>
+						</div>
+					</div>
+					<div class="w-5">
+						<div id="hintBtn" class="btn-circle">
+							<span><i class="fas fa-exclamation"></i></span>
+						</div>
 					</div>
 				</div>
 			</header>

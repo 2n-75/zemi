@@ -76,6 +76,7 @@ export const scoreComponent = Vue.component('score', {
 				* this.scrollToNext(count)だと動かない
 				*/
 				window.setTimeout(this.scrollToNext, 3000, count)
+				window.setTimeout(this.resetMess, 3000, false)
 				window.setTimeout(showHint, 3000, false)
 			} else {
 				this.correct = false;
@@ -88,6 +89,10 @@ export const scoreComponent = Vue.component('score', {
 			this.recordResult(this.correct, review);
 			// アンケートを表示する
 			//showReview(true);
+		},
+		resetMess() {
+			const headMess = document.getElementById("headingHint")
+			headMess.innerHTML = "【ヒント】りんごが全部で4つ分になるようにえらぼう";
 		},
 		changeMess(correct) {
 			const headMess = document.getElementById("headingHint")

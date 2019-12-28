@@ -9,9 +9,13 @@ const QUESTIONS = []; // コンポーネントに投げる出題データ
 
 // 問題生成
 function checkLevel(TEST_DATA) {
+	const isNoteArray = []
+	for (let i = 0; i < TEST_DATA.length; i++) {
+		isNoteArray.push(1)
+	}
 	if (TEST_DATA === undefined) return false;
 	// 難易度を調べる
-	const difficulty = calcDifficulty(TEST_DATA);
+	const difficulty = calcDifficulty(TEST_DATA, isNoteArray);
 	console.log("難易度: " + difficulty);
 
 	// レベルを調べる
